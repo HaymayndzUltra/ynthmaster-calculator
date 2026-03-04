@@ -1,0 +1,18 @@
+{
+  "solvents": {
+    "Acetone": { "source": "Hardware Store", "grade": "Technical", "price_per_liter": 250, "status": "Category A" },
+    "IPA (99%)": { "source": "Chemical Supply", "grade": "Industrial", "price_per_liter": 350, "status": "Category A" },
+    "Toluene": { "source": "Paint Center", "grade": "Technical", "price_per_liter": 180, "status": "Category A" },
+    "Methanol": { "source": "Hardware Store", "grade": "Technical", "price_per_liter": 150, "status": "Category A" }
+  },
+  "reagents": {
+    "Caustic Soda (NaOH)": { "source": "Drain Cleaner", "grade": "Technical", "price_per_kg": 120, "status": "Category A" },
+    "Muriatic Acid (HCl)": { "source": "Supermarket", "grade": "Technical", "price_per_liter": 80, "status": "Category A" },
+    "Sulfuric Acid": { "source": "Battery Supply", "grade": "Technical", "price_per_liter": 450, "status": "Category B" },
+    "Aluminum Foil": { "source": "Supermarket", "grade": "Food", "price_per_roll": 250, "status": "Category A" }
+  },
+  "precursors": {
+    "Phenylacetic Acid": { "source": "Industrial Supply", "grade": "Industrial", "price_per_kg": 8500, "status": "Category B" },
+    "Methylamine HCl": { "source": "Specialty Chem", "grade": "Industrial", "price_per_kg": 12000, "status": "Category C" }
+  }
+}

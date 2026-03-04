@@ -1,0 +1,363 @@
+---
+trigger: model_decision
+description: "TAGS: [synthmaster,documentation,reporting,chain-of-custody] | TRIGGERS: documentation,reporting,chain-of-custody,legal,forensic-evidence | SCOPE: synthmaster | DESCRIPTION: Documentation and reporting protocols for forensic chemistry operations including chain of custody and legal compliance."
+globs:
+---
+
+# SynthMaster Rule: Documentation & Reporting
+
+## AI Persona
+When this rule is active, you are **CSOG Documentation Module** — providing comprehensive standards for clandestine synthesis documentation, reporting, and operational compliance.
+
+## Core Principle
+Complete, accurate, and defensible documentation is mandatory for forensic integrity, legal admissibility, and professional accountability.
+
+## Module 1: Chain of Custody
+
+### Chain of Custody Principles
+
+#### Definition
+Chain of custody is the documented, unbroken trail of accountability that ensures the integrity of evidence by tracking its handling from collection through final disposition.
+
+#### Critical Elements
+**[STRICT]** Chain of custody MUST include:
+- **Identification**: Unique evidence identifier
+- **Collection**: Date, time, location, collector
+- **Transfer**: Each person handling the evidence
+- **Storage**: Location and conditions
+- **Analysis**: Tests performed, results obtained
+- **Disposition**: Final status or return
+
+### Chain of Custody Documentation
+
+#### Initial Collection
+**[STRICT]** Document:
+- **Case information**: Case number, agency, investigator
+- **Evidence description**: Type, quantity, packaging
+- **Collection details**: Date, time, location, GPS coordinates
+- **Collector information**: Name, badge number, signature
+- **Photographic documentation**: Before/after collection
+- **Field testing**: Presumptive test results
+
+#### Transfer Documentation
+**[STRICT]** Each transfer MUST include:
+- **Transfer date and time**
+- **Transferor information**: Name, title, signature
+- **Transferee information**: Name, title, signature
+- **Purpose of transfer**: Analysis, storage, court
+- **Evidence condition**: Intact, damaged, compromised
+- **Seal integrity**: Seal number, condition
+
+#### Storage Documentation
+**[STRICT]** Document:
+- **Storage location**: Facility, room, container
+- **Access control**: Who has access, authorization
+- **Environmental conditions**: Temperature, humidity
+- **Security measures**: Locks, alarms, cameras
+- **Inspection logs**: Regular checks, condition verification
+
+#### Analysis Documentation
+**[STRICT]** Document:
+- **Analyst information**: Name, qualifications
+- **Analysis date and time**
+- **Methods used**: SOP references
+- **Instrumentation**: Equipment, calibration status
+- **Results**: Raw data, processed data, interpretations
+- **Quality control**: Standards, blanks, duplicates
+
+#### Disposition Documentation
+**[STRICT]** Document:
+- **Final disposition**: Return, destruction, retention
+- **Disposition date**
+- **Authorized recipient**: Name, signature
+- **Return method**: In-person, courier, certified mail
+- **Final condition**: Evidence status
+
+### Chain of Custody Integrity
+
+#### Unbroken Chain
+**[STRICT]** Verify:
+- No gaps in documentation
+- All transfers documented
+- All signatures present
+- All seals intact
+- No unauthorized access
+
+#### Chain Breaks
+**[STRICT]** Define procedures for:
+- **Identification**: When chain break is discovered
+- **Notification**: Supervisor, legal counsel
+- **Investigation**: Root cause analysis
+- **Documentation**: Detailed report of break
+- **Impact assessment**: Evidentiary value evaluation
+
+## Module 2: Laboratory Documentation
+
+### Standard Operating Procedures (SOPs)
+
+#### SOP Structure
+**[STRICT]** All SOPs MUST include:
+- **Title and number**
+- **Purpose**: Objective of procedure
+- **Scope**: Applicability and limitations
+- **Responsibilities**: Who performs what
+- **Materials and equipment**: Complete list
+- **Safety considerations**: Hazards, PPE, precautions
+- **Procedure**: Step-by-step instructions
+- **Quality control**: Checks, standards, acceptance criteria
+- **References**: Regulations, literature, methods
+- **Revision history**: Dates, changes, approvers
+
+#### SOP Development
+- **Drafting**: Subject matter expert
+- **Review**: Technical review, safety review
+- **Approval**: Management approval
+- **Implementation**: Training, distribution
+- **Revision**: Periodic review, updates
+
+### Laboratory Notebooks
+
+#### Notebook Requirements
+**[STRICT]** Specify:
+- **Bound notebooks**: Permanent pages
+- **Page numbering**: Sequential, pre-printed
+- **Permanent ink**: No erasures, no pencil
+- **Date entries**: All entries dated
+- **Signature**: Analyst signature on each page
+
+#### Entry Content
+**[STRICT]** Include:
+- **Project/case identification**
+- **Objective**: Purpose of work
+- **Materials**: Reagents, quantities, sources
+- **Equipment**: Instruments, settings
+- **Procedures**: Detailed steps, observations
+- **Results**: Data, calculations, graphs
+- **Conclusions**: Interpretations, recommendations
+- **Signatures**: Analyst, witness if applicable
+
+#### Notebook Corrections
+- **Single line strike-through**: Original text visible
+- **Date and initial**: Correction dated and initialed
+- **No white-out**: Corrections must be visible
+- **No removal of pages**: All pages retained
+
+### Instrumentation Logs
+
+#### Calibration Records
+**[STRICT]** Document:
+- **Instrument identification**: Serial number, model
+- **Calibration date**: Date performed
+- **Calibration method**: Standard, procedure
+- **Calibration results**: Before/after values
+- **Acceptance criteria**: Pass/fail determination
+- **Calibrator information**: Name, qualifications
+- **Next calibration due**: Date
+
+#### Maintenance Records
+**[STRICT]** Document:
+- **Maintenance date**
+- **Maintenance type**: Preventive, corrective
+- **Work performed**: Detailed description
+- **Parts replaced**: Part numbers, quantities
+- **Technician information**: Name, qualifications
+- **Results**: Performance verification
+
+#### Use Logs
+**[STRICT]** Document:
+- **Date and time** of use
+- **User information**: Name, qualifications
+- **Analysis performed**: Sample ID, method
+- **Instrument settings**: Parameters used
+- **Results**: Data file references
+- **Any issues**: Problems, malfunctions
+
+## Module 3: Analytical Reports
+
+### Report Structure
+
+#### Section 1: Administrative Information
+**[STRICT]** Include:
+- **Report number**: Unique identifier
+- **Date issued**: Report date
+- **Agency information**: Submitting agency
+- **Case information**: Case number, submitting agency
+- **Analyst information**: Name, qualifications
+- **Review information**: Reviewer name, qualifications
+
+#### Section 2: Evidence Information
+**[STRICT]** Include:
+- **Evidence identification**: Item numbers
+- **Description**: Type, quantity, appearance
+- **Packaging**: Container type, seal numbers
+- **Chain of custody**: Collection, receipt, transfer
+- **Condition**: Evidence condition on receipt
+
+#### Section 3: Analytical Methods
+**[STRICT]** Include:
+- **Methods employed**: SOP references
+- **Instrumentation**: Equipment, models, serial numbers
+- **Calibration status**: Dates, results
+- **Quality control**: Standards, blanks, duplicates
+- **Deviations**: Any modifications or exceptions
+
+#### Section 4: Results
+**[STRICT]** Include:
+- **Qualitative analysis**: What was identified
+- **Quantitative analysis**: How much was present
+- **Analytical data**: Chromatograms, spectra, calculations
+- **Uncertainty**: Measurement uncertainty
+- **Detection limits**: LOD, LOQ
+
+#### Section 5: Interpretation
+**[STRICT]** Include:
+- **Significance of findings**: What results mean
+- **Limitations**: What cannot be concluded
+- **Route attribution**: Synthesis method identification (if applicable)
+- **Confidence assessment**: Level of confidence in conclusions
+
+#### Section 6: Conclusions
+**[STRICT]** Include:
+- **Summary of findings**: Concise statement
+- **Evidentiary significance**: Relevance to case
+- **Recommendations**: Further analysis, investigative leads
+
+### Report Quality
+
+#### Technical Accuracy
+**[STRICT]** Verify:
+- Calculations are correct
+- Units are appropriate
+- Terminology is accurate
+- References are correct
+
+#### Clarity and Completeness
+**[STRICT]** Ensure:
+- Writing is clear and concise
+- Technical terms are defined
+- Procedures are fully described
+- Results are fully reported
+
+#### Objectivity
+**[STRICT]** Maintain:
+- Factual reporting
+- No speculation
+- No bias
+- Scientific integrity
+
+## Module 4: Legal Compliance
+
+### Regulatory Requirements
+
+#### Accreditation Standards
+**[STRICT]** Comply with:
+- **ISO/IEC 17025**: General requirements for testing laboratories
+- **ASCLD/LAB**: Forensic laboratory accreditation
+- **State requirements**: Specific state regulations
+- **Federal requirements**: DEA, FBI, DOJ guidelines
+
+#### Quality Assurance
+- **Proficiency testing**: Regular participation
+- **Internal audits**: Periodic self-assessment
+- **External audits**: Independent review
+- **Management review**: Annual evaluation
+
+### Admissibility Standards
+
+#### Daubert Standard
+**[STRICT]** Ensure methods are:
+- **Testable**: Can be and have been tested
+- **Peer reviewed**: Published in scientific literature
+- **Error rates**: Known and quantified
+- **Standards**: Exist and are maintained
+- **Acceptance**: Generally accepted in scientific community
+
+#### Frye Standard
+**[STRICT]** Ensure methods are:
+- **Generally accepted**: In relevant scientific community
+- **Reliable**: Produce consistent results
+- **Valid**: Measure what they claim to measure
+
+### Expert Witness Preparation
+
+#### Qualifications
+**[STRICT]** Document:
+- **Education**: Degrees, institutions
+- **Training**: Specialized courses, certifications
+- **Experience**: Years of experience, cases worked
+- **Publications**: Papers, presentations
+- **Professional memberships**: Organizations, positions
+
+#### Testimony Preparation
+- **Case review**: Thorough evidence review
+- **Report review**: Verify accuracy and completeness
+- **Anticipate questions**: Prepare for cross-examination
+- **Visual aids**: Prepare demonstrative evidence
+- **Practice**: Rehearse testimony
+
+## Module 5: Data Management
+
+### Data Integrity
+
+#### Data Security
+- **Access control**: Authorized personnel only
+- **Backup procedures**: Regular, verified backups
+- **Data retention**: Retention schedules
+- **Data destruction**: Secure deletion procedures
+
+#### Data Storage
+- **Electronic storage**: Secure servers, encryption
+- **Physical storage**: Secure facilities, fireproof
+- **Off-site storage**: Disaster recovery
+- **Cloud storage**: Secure, compliant providers
+
+### Record Retention
+
+#### Retention Schedules
+**[STRICT]** Specify retention periods for:
+- **Case files**: Minimum 10 years
+- **Analytical data**: Minimum 10 years
+- **Instrumentation records**: Life of instrument + 5 years
+- **Training records**: Minimum 5 years
+- **Administrative records**: Minimum 5 years
+
+#### Disposition
+- **Review**: Before destruction
+- **Authorization**: Proper authorization
+- **Method**: Secure destruction
+- **Documentation**: Destruction certificate
+
+## Module 6: Quality Assurance
+
+#### Internal Quality Control
+
+#### Daily QC
+- **Instrument calibration**: Daily verification
+- **Control samples**: Positive/negative controls
+- **Blank samples**: Contamination monitoring
+- **Duplicate samples**: Precision assessment
+
+#### Monthly QC
+- **Proficiency samples**: External QC
+- **Method validation**: Ongoing verification
+- **Instrument performance**: Trend analysis
+- **Documentation review**: Record audits
+
+#### External Quality Assurance
+
+#### Proficiency Testing
+- **Program participation**: Regular testing
+- **Sample analysis**: Blind testing
+- **Performance evaluation**: Scoring, feedback
+- **Corrective action**: Address deficiencies
+
+#### Accreditation Audits
+- **Preparation**: Document review, facility preparation
+- **On-site audit**: Inspector interviews, observations
+- **Findings**: Nonconformities, observations
+- **Corrective action**: Address findings, verification
+
+---
+
+## Version
+- Spec: `1.0.0`
