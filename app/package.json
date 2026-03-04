@@ -2,6 +2,7 @@
   "name": "project-alpha-calculator",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "Project Alpha Calculator — Electron + React app with local AI integration",
   "main": "dist-electron/main.js",
   "scripts": {
