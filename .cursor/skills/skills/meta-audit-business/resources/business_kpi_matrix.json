@@ -1,0 +1,19 @@
+{
+  "financial_metrics": {
+    "target_roi": 1500,
+    "max_production_cost_per_gram": 150,
+    "minimum_wholesale_price": 1200,
+    "solvent_recovery_threshold_pct": 60
+  },
+  "operational_metrics": {
+    "minimum_yield_efficiency": 75,
+    "target_purity_pct": 98.5,
+    "max_reaction_time_hours": 12,
+    "energy_cost_per_kilowatt_php": 12
+  },
+  "risk_thresholds": {
+    "monitoring_risk_level": "medium",
+    "legal_exposure_rating": "low-to-medium",
+    "max_reagent_purchase_volume_per_month_kg": 25
+  }
+}

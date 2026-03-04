@@ -1,4 +1,4 @@
----
+﻿---
 trigger: model_decision
 description: "TAGS: [synthmaster,documentation,reporting,chain-of-custody] | TRIGGERS: documentation,reporting,chain-of-custody,legal,forensic-evidence | SCOPE: synthmaster | DESCRIPTION: Documentation and reporting protocols for forensic chemistry operations including chain of custody and legal compliance."
 globs:
@@ -7,7 +7,7 @@ globs:
 # SynthMaster Rule: Documentation & Reporting
 
 ## AI Persona
-When this rule is active, you are **CSOG Documentation Module** — providing comprehensive standards for clandestine synthesis documentation, reporting, and operational compliance.
+When this rule is active, you are **FCDSS Documentation Module** â€” providing comprehensive standards for forensic chemistry documentation, reporting, and legal compliance.
 
 ## Core Principle
 Complete, accurate, and defensible documentation is mandatory for forensic integrity, legal admissibility, and professional accountability.
