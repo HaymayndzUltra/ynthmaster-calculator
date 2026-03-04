@@ -1,16 +1,37 @@
-function App() {
-  return (
-    <div className="min-h-screen bg-gray-950 text-gray-100">
-      <header className="border-b border-gray-800 px-6 py-4">
-        <h1 className="text-xl font-semibold tracking-tight">
-          Project Alpha Calculator
-        </h1>
-      </header>
-      <main className="p-6">
-        <p className="text-gray-400">Foundation ready. Components loading...</p>
-      </main>
-    </div>
-  )
-}
+import React, { useState, useCallback } from 'react';
+import { AIAssistant } from './components/AIAssistant/AIAssistant';
 
-export default App
+const appContainerStyle: React.CSSProperties = {
+  minHeight: '100vh',
+  backgroundColor: '#0D1117',
+  color: '#E5E7EB',
+  fontFamily:
+    "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+};
+
+const App: React.FC = () => {
+  const [aiPanelOpen, setAiPanelOpen] = useState(false);
+
+  const handleAiToggle = useCallback(() => {
+    setAiPanelOpen((prev) => !prev);
+  }, []);
+
+  // Calculator context — undefined until Phase 3 (calculator state) is built.
+  // The AI still works without it per PRD §3.10; it just won't have
+  // app-state awareness (active chapter, target yield, reagents).
+  const calculatorContext = undefined;
+
+  return (
+    <div style={appContainerStyle}>
+      {/* Main app content will be added in future phases */}
+
+      <AIAssistant
+        isOpen={aiPanelOpen}
+        onToggle={handleAiToggle}
+        calculatorContext={calculatorContext}
+      />
+    </div>
+  );
+};
+
+export default App;
