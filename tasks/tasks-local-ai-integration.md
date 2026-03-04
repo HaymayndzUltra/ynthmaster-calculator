@@ -370,59 +370,59 @@ Suggest creating branch: `feature/local-ai-integration` from `main`.
 
 ---
 
-- [ ] **8.0 Install dependencies** `[COMPLEXITY: Simple]`
+- [x] **8.0 Install dependencies** `[COMPLEXITY: Simple]`
 > **WHY:** ChatMessage needs Markdown rendering. Must be installed before component work.
 > **Recommended Model:** `Sonnet 4.5`
 
-  - [ ] 8.1 **Run `npm install react-markdown@^9.0.0 remark-gfm@^4.0.0`** in the app directory.
+  - [x] 8.1 **Run `npm install react-markdown@^9.0.0 remark-gfm@^4.0.0`** in the app directory.
     - Verify `package.json` updated with correct versions
     - Verify no peer dependency conflicts with existing React version
     [APPLIES RULES: `3-code-quality-checklist`]
 
 ---
 
-- [ ] **9.0 Implement useAIChat custom hook** `[COMPLEXITY: Complex]` `[DEPENDS ON: 7.0, 8.0]`
+- [x] **9.0 Implement useAIChat custom hook** `[COMPLEXITY: Complex]` `[DEPENDS ON: 7.0, 8.0]`
 > **WHY:** Central state management for all AI chat logic. Every component consumes this hook instead of managing IPC directly. Handles streaming token accumulation, error display, and listener lifecycle.
 > **Recommended Model:** `Sonnet 4.5`
 > **Rules to apply:** `[3-code-quality-checklist]`, `[common-rule-ui-interaction-a11y-perf]`
 
-  - [ ] 9.1 **Create `src/hooks/useAIChat.ts`:** Scaffold hook returning `UseAIChatReturn`:
+  - [x] 9.1 **Create `src/hooks/useAIChat.ts`:** Scaffold hook returning `UseAIChatReturn`:
     - State: `messages: ChatMessage[]`, `isStreaming: boolean`, `currentStreamContent: string`, `aiStatus: AIStatus`
     [APPLIES RULES: `3-code-quality-checklist`]
 
-  - [ ] 9.2 **Implement status polling on mount:**
+  - [x] 9.2 **Implement status polling on mount:**
     - `useEffect` → call `window.ai.getStatus()` on mount
     - Set up 30-second polling interval for status updates
     - Cleanup: clear interval on unmount
     [APPLIES RULES: `3-code-quality-checklist`]
 
-  - [ ] 9.3 **Implement `sendMessage(content, context?)`:**
+  - [x] 9.3 **Implement `sendMessage(content, context?)`:**
     - Append `{ role: 'user', content }` to messages array
     - Set `isStreaming = true`, `currentStreamContent = ''`
     - Call `window.ai.chat(messages, context)`
     - On error from invoke → append error message to chat, set `isStreaming = false`
     [APPLIES RULES: `3-code-quality-checklist`]
 
-  - [ ] 9.4 **Implement streaming chunk subscription:**
+  - [x] 9.4 **Implement streaming chunk subscription:**
     - `useEffect` → subscribe to `window.ai.onChunk(callback)`
     - On each chunk: append `token` to `currentStreamContent`
     - On `done: true`: append full accumulated content as `{ role: 'assistant', content: currentStreamContent }` to messages, set `isStreaming = false`
     - Cleanup: call unsubscribe function on unmount
     [APPLIES RULES: `3-code-quality-checklist`]
 
-  - [ ] 9.5 **Implement error subscription:**
+  - [x] 9.5 **Implement error subscription:**
     - `useEffect` → subscribe to `window.ai.onError(callback)`
     - On error: append `{ role: 'assistant', content: 'Error: ...' }` to messages, set `isStreaming = false`
     - Cleanup: call unsubscribe function on unmount
     [APPLIES RULES: `3-code-quality-checklist`]
 
-  - [ ] 9.6 **Implement `abortGeneration()`:**
+  - [x] 9.6 **Implement `abortGeneration()`:**
     - Call `window.ai.abort()`
     - If `currentStreamContent` has content → append as partial assistant message
     - Set `isStreaming = false`
     [APPLIES RULES: `3-code-quality-checklist`]
 
-  - [ ] 9.7 **Implement `clearChat()`:**
+  - [x] 9.7 **Implement `clearChat()`:**
     - Call `window.ai.abort()` (safety: kill any in-flight)
     - Call `window.ai.clearHistory()`
     - Set `messages = []`, `isStreaming = false`, `currentStreamContent = ''`
@@ -430,12 +430,12 @@ Suggest creating branch: `feature/local-ai-integration` from `main`.
 
 ---
 
-- [ ] **10.0 Implement StatusIndicator component** `[COMPLEXITY: Simple]` `[DEPENDS ON: 9.0]`
+- [x] **10.0 Implement StatusIndicator component** `[COMPLEXITY: Simple]` `[DEPENDS ON: 9.0]`
 > **WHY:** Visual confirmation of Ollama status. Green/yellow/red drives Operator confidence.
 > **Recommended Model:** `Sonnet 4.5`
 > **Rules to apply:** `[common-rule-ui-foundation-design-system]`, `[common-rule-ui-interaction-a11y-perf]`
 
-  - [ ] 10.1 **Create `src/components/AIAssistant/StatusIndicator.tsx`:**
+  - [x] 10.1 **Create `src/components/AIAssistant/StatusIndicator.tsx`:**
     - Props: `status: AIStatus`
     - Render colored dot (●/◌) + label based on status:
       - Green: `ollamaConnected && modelLoaded` → `"{modelLoaded} ready"`
@@ -447,12 +447,12 @@ Suggest creating branch: `feature/local-ai-integration` from `main`.
 
 ---
 
-- [ ] **11.0 Implement ContextBadge component** `[COMPLEXITY: Simple]` `[DEPENDS ON: 9.0]`
+- [x] **11.0 Implement ContextBadge component** `[COMPLEXITY: Simple]` `[DEPENDS ON: 9.0]`
 > **WHY:** Shows what context the AI sees — builds trust that quantities are scaled to the Operator's batch.
 > **Recommended Model:** `Sonnet 4.5`
 > **Rules to apply:** `[common-rule-ui-foundation-design-system]`
 
-  - [ ] 11.1 **Create `src/components/AIAssistant/ContextBadge.tsx`:**
+  - [x] 11.1 **Create `src/components/AIAssistant/ContextBadge.tsx`:**
     - Props: `context: CalculatorContext | undefined`
     - Display pill/badge:
       - With context: `"Ch.{N} | Target: {X}g"` (e.g., `"Ch.4 | Target: 25g"`)
@@ -462,12 +462,12 @@ Suggest creating branch: `feature/local-ai-integration` from `main`.
 
 ---
 
-- [ ] **12.0 Implement ChatMessage component** `[COMPLEXITY: Simple]` `[DEPENDS ON: 8.0]`
+- [x] **12.0 Implement ChatMessage component** `[COMPLEXITY: Simple]` `[DEPENDS ON: 8.0]`
 > **WHY:** Renders AI responses with Markdown (GFM tables, code blocks, bold). Must handle CSOG procedure format well.
 > **Recommended Model:** `Sonnet 4.5`
 > **Rules to apply:** `[common-rule-ui-foundation-design-system]`, `[common-rule-ui-interaction-a11y-perf]`
 
-  - [ ] 12.1 **Create `src/components/AIAssistant/ChatMessage.tsx`:**
+  - [x] 12.1 **Create `src/components/AIAssistant/ChatMessage.tsx`:**
     - Props: `role: 'user' | 'assistant'`, `content: string`, `isStreaming?: boolean`
     - User messages: right-aligned, muted/dark background
     - Assistant messages: left-aligned, rendered via `<ReactMarkdown remarkPlugins={[remarkGfm]}>`
@@ -478,12 +478,12 @@ Suggest creating branch: `feature/local-ai-integration` from `main`.
 
 ---
 
-- [ ] **13.0 Implement ChatInput component** `[COMPLEXITY: Simple]` `[DEPENDS ON: 9.0]`
+- [x] **13.0 Implement ChatInput component** `[COMPLEXITY: Simple]` `[DEPENDS ON: 9.0]`
 > **WHY:** Primary interaction point. Enter-to-send, Shift+Enter newline, Send↔Stop toggle.
 > **Recommended Model:** `Sonnet 4.5`
 > **Rules to apply:** `[common-rule-ui-foundation-design-system]`, `[common-rule-ui-interaction-a11y-perf]`
 
-  - [ ] 13.1 **Create `src/components/AIAssistant/ChatInput.tsx`:**
+  - [x] 13.1 **Create `src/components/AIAssistant/ChatInput.tsx`:**
     - Props: `onSend`, `onAbort`, `isStreaming`, `disabled`
     - Textarea with:
       - `Enter` to send (if not empty and not disabled)
