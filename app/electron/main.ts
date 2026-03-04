@@ -3,6 +3,7 @@ import { join } from 'path';
 import { readFileSync } from 'fs';
 import { registerAIHandlers } from './ipc/aiHandlers';
 import { registerCalcHandlers } from './ipc/calcHandlers';
+import { registerWindowHandlers } from './ipc/windowHandlers';
 import { initializeDatabase, closeDatabase } from './services/database';
 import type { OpsecMappingFile } from '../src/types/ai';
 import type { DatabaseAdapter } from './services/contextBuilder';
@@ -17,14 +18,9 @@ function createWindow(): void {
     minWidth: 800,
     minHeight: 600,
     backgroundColor: '#06080C',
-    titleBarStyle: 'hidden',
-    titleBarOverlay: {
-      color: '#06080C',
-      symbolColor: '#8A95A8',
-      height: 32,
-    },
+    frame: false,
     webPreferences: {
-      preload: join(__dirname, 'preload.js'),
+      preload: join(__dirname, 'preload.cjs'),
       contextIsolation: true,
       nodeIntegration: false,
     },
@@ -85,6 +81,7 @@ async function initializeServices(): Promise<void> {
 }
 
 app.whenReady().then(() => {
+  registerWindowHandlers();
   createWindow();
   initializeServices();
 

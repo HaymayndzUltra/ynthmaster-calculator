@@ -57,6 +57,15 @@ contextBridge.exposeInMainWorld('ai', {
   },
 });
 
+// ─── Window Controls Bridge ───────────────────────────────────
+// Exposes window.windowControls namespace for custom titlebar.
+contextBridge.exposeInMainWorld('windowControls', {
+  minimize: () => ipcRenderer.send('window:minimize'),
+  maximize: () => ipcRenderer.send('window:maximize'),
+  close: () => ipcRenderer.send('window:close'),
+  isMaximized: (): Promise<boolean> => ipcRenderer.invoke('window:isMaximized'),
+});
+
 // ─── Calculator Bridge ────────────────────────────────────────
 // Exposes window.calc namespace to the renderer process.
 contextBridge.exposeInMainWorld('calc', {

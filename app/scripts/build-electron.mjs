@@ -8,6 +8,7 @@ await build({
   outdir: 'dist-electron',
   external: ['electron', 'sql.js'],
   format: 'cjs',
+  outExtension: { '.js': '.cjs' },
   sourcemap: true,
 });
 
