@@ -4,15 +4,141 @@
 /* Bundle these fonts locally for offline Electron use.
    Place woff2 files in app/public/fonts/ */
 @font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'JetBrains Mono';
-  src: url('/fonts/JetBrainsMono-Variable.woff2') format('woff2');
-  font-weight: 400 800;
+  src: url('/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 /* ── Design System Custom Properties ────────────────────── */
 :root {
+  /* ── Surface & Background Palette (luminance-stepping depth model) ── */
+  --bg-primary:  #06080C;   /* L≈3%  — App background */
+  --bg-deep:     #080B10;   /* L≈4%  — Sidebar background, recessed panels */
+  --bg-surface:  #0B0F15;   /* L≈6%  — Cards, panels — default content surface */
+  --bg-elevated: #111620;   /* L≈9%  — Hover states, active icon containers */
+  --bg-raised:   #161C28;   /* L≈11% — Focused inputs, selected sidebar item bg */
+  --bg-float:    #1A2233;   /* L≈13% — Tooltips, floating widgets, dropdown menus */
+
+  /* ── Border & Divider Palette ── */
+  --border-default: #141920;          /* Card borders — 1px, default state */
+  --border-subtle:  #1A2030;          /* Dividers, section separators */
+  --border-focus:   #151B25;          /* Input borders — resting state */
+  --border-hover:   #2A3040;          /* Input/card borders — hover state */
+  --border-active:  rgba(76,158,255,0.2); /* Active/focus-visible ring — 20% opacity blue */
+
+  /* ── Text Palette ── */
+  --text-primary:   #E8ECF2;  /* 14.2:1 vs bg-surface — headings, amounts */
+  --text-secondary: #8A95A8;  /* 6.1:1  vs bg-surface — labels, descriptions */
+  --text-muted:     #4A5568;  /* 3.2:1  vs bg-surface — hints, metadata (≥16px) */
+  --text-dim:       #1E2530;  /* 1.4:1  — decorative only: F12 hints, watermarks */
+
+  /* ── Accent Palette (Semantic) ── */
+  --accent-blue:   #4C9EFF;  /* Action — CTA, active states, focus rings */
+  --accent-green:  #3FB950;  /* Success/Safe — completion, safe temp range */
+  --accent-amber:  #D4A017;  /* Warning — caution, yield extremes */
+  --accent-orange: #F97316;  /* Critical — escalated warning */
+  --accent-red:    #E5484D;  /* Danger/Emergency — errors, thermal runaway */
+  --accent-purple: #A78BFA;  /* Learning — pro tips, operator knowledge */
+  --accent-cyan:   #22D3EE;  /* Utility — ventilation/setup tips */
+
+  /* ── Accent Companion Backgrounds (4-6% tint) ── */
+  --accent-blue-bg:   rgba(76,158,255, 0.04);
+  --accent-green-bg:  rgba(63,185,80, 0.04);
+  --accent-amber-bg:  rgba(212,160,23, 0.03);
+  --accent-orange-bg: rgba(249,115,22, 0.04);
+  --accent-red-bg:    rgba(229,72,77, 0.06);
+  --accent-purple-bg: rgba(167,139,250, 0.04);
+  --accent-cyan-bg:   rgba(34,211,238, 0.04);
+
+  /* ── Severity Color Mapping ── */
+  --severity-info-bg:      rgba(76,158,255, 0.04);
+  --severity-info-border:  rgba(76,158,255, 0.1);
+  --severity-info-text:    #93C5FD;  /* blue-300 */
+  --severity-info-icon:    #60A5FA;  /* blue-400 */
+
+  --severity-warning-bg:     rgba(212,160,23, 0.03);
+  --severity-warning-border: rgba(212,160,23, 0.1);
+  --severity-warning-text:   rgba(212,160,23, 0.7);  /* amber-400/70 */
+  --severity-warning-icon:   rgba(212,160,23, 0.7);  /* amber-500/70 */
+
+  --severity-critical-bg:     rgba(249,115,22, 0.04);
+  --severity-critical-border: rgba(249,115,22, 0.2);
+  --severity-critical-text:   #FDBA74;  /* orange-300 */
+  --severity-critical-icon:   #F97316;  /* orange-500 */
+
+  --severity-emergency-bg:     rgba(229,72,77, 0.06);
+  --severity-emergency-border: rgba(229,72,77, 0.2);
+  --severity-emergency-text:   #FCA5A5;  /* red-300 */
+  --severity-emergency-icon:   #F87171;  /* red-400 */
+
+  /* ── Typography Scale (Inter + JetBrains Mono) ── */
+  /* Rationale: 1.25 scale for Inter on Electron (medium density desktop app) */
+  --font-display:  42px;  /* Target yield number only */
+  --font-h1:       24px;  /* Screen titles */
+  --font-h2:       20px;  /* Section headers, chapter titles */
+  --font-h3:       16px;  /* Card titles */
+  --font-body:     14px;  /* Instructions, descriptions */
+  --font-body-sm:  13px;  /* Step instructions, reagent names */
+  --font-caption:  12px;  /* Labels, badges, secondary info */
+  --font-micro:    10px;  /* Tags, metadata, tracking labels */
+  --font-tiny:      9px;  /* Subtle hints, chapter subtitles */
+  --font-mono-lg:  20px;  /* Reagent amounts, temperatures */
+  --font-mono-xl:  24px;  /* Large quantity display */
+  --font-mono-sm:  11px;  /* MW values, density, small numbers */
+
+  --lh-display:  1.0;
+  --lh-h1:       1.3;
+  --lh-h2:       1.3;
+  --lh-h3:       1.4;
+  --lh-body:     1.7;
+  --lh-body-sm:  1.6;
+  --lh-caption:  1.4;
+  --lh-micro:    1.3;
+  --lh-tiny:     1.2;
+  --lh-mono:     1.0;
+  --lh-mono-sm:  1.3;
+
+  /* ── Spacing Scale (8px base grid) ── */
+  --space-0\.5: 4px;
+  --space-1:    8px;
+  --space-1\.5: 12px;
+  --space-2:    16px;
+  --space-2\.5: 20px;
+  --space-3:    24px;
+  --space-4:    32px;
+  --space-6:    48px;
+  --space-8:    64px;
+
+  /* ── Border Radius ── */
+  --radius-sm:    8px;   /* Buttons (standard) */
+  --radius-md:    12px;  /* Cards, panels, inputs, icon containers, sidebar nav */
+  --radius-lg:    16px;  /* Large inputs, modal overlays */
+  --radius-full:  20px;  /* Pills, badges */
+
   /* Easing Curves */
   --ease-out-expo:    cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
@@ -140,9 +266,30 @@
   /* Number input spinners removed */
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-  input[type="number"] { -moz-appearance: textfield; }
+  input[type="number"] { appearance: textfield; -moz-appearance: textfield; }
 
   /* Tabular nums for data display */
   .tabular-nums { font-variant-numeric: tabular-nums; }
   .mono { font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace; }
+}
+
+/* ── Backdrop Blur Utilities (PRD §3.9.3) ─────────────── */
+.blur-widget {
+  backdrop-filter: blur(12px) saturate(1.2);
+  background: rgba(11, 15, 21, 0.85);
+}
+
+.blur-overlay {
+  backdrop-filter: blur(16px) saturate(1.1);
+  background: rgba(6, 8, 12, 0.92);
+}
+
+.blur-tooltip {
+  backdrop-filter: blur(8px);
+  background: rgba(26, 34, 51, 0.95);
+}
+
+/* ── Contain Utility (PRD §12.3) ──────────────────────── */
+.contain-layout {
+  contain: layout style;
 }

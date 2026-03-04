@@ -19,6 +19,8 @@ interface ProcedureRow {
   duration_min: number | null;
   duration_max: number | null;
   severity: string | null;
+  pro_tip: string | null;
+  image_path: string | null;
 }
 
 interface ProcessRow {
@@ -118,6 +120,8 @@ export function registerCalcHandlers(db: DatabaseAdapter): void {
         durationMin: r.duration_min,
         durationMax: r.duration_max,
         severity: r.severity as ProcedureStep['severity'],
+        proTip: r.pro_tip,
+        imagePath: r.image_path,
       }));
     } catch (err) {
       console.error('[calcHandlers] getProcedures error:', err);

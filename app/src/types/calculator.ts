@@ -98,6 +98,8 @@ export interface ProcedureStep {
   durationMin: number | null;
   durationMax: number | null;
   severity: 'info' | 'warning' | 'critical' | 'emergency' | null;
+  proTip: string | null;
+  imagePath: string | null;
 }
 
 export interface FailureMode {
