@@ -1,104 +1,104 @@
 {
-  "version": "1.0.0",
-  "description": "OPSEC alias-to-internal ID mapping for UI display",
+  "version": "1.0",
+  "description": "OPSEC chemical alias mappings — maps real chemical names to operational aliases for use in AI system prompts and UI display.",
   "mappings": [
     {
       "internal_id": "PAA",
       "alias": "Honey Crystals",
       "chemical": "Phenylacetic Acid",
-      "mw": 136.16,
-      "used_in": "P2P Synthesis"
+      "mw": 136.15,
+      "used_in": "ch02"
     },
     {
-      "internal_id": "PbAc",
+      "internal_id": "PBA",
       "alias": "Sugar Lead",
-      "chemical": "Lead Acetate Trihydrate",
-      "mw": 379.33,
-      "used_in": "P2P Synthesis"
+      "chemical": "Lead Acetate",
+      "mw": 325.29,
+      "used_in": "ch02"
     },
     {
-      "internal_id": "Hex",
+      "internal_id": "HEX",
       "alias": "Camp Fuel",
       "chemical": "Hexamine",
       "mw": 140.19,
-      "used_in": "Methylamine Gen"
+      "used_in": "ch03"
     },
     {
-      "internal_id": "HCl_32",
+      "internal_id": "HCL",
       "alias": "Pool Acid",
       "chemical": "Muriatic Acid 32%",
       "mw": 36.46,
-      "used_in": "Methylamine Gen"
+      "used_in": "ch03"
     },
     {
       "internal_id": "P2P",
       "alias": "Alpha Base",
-      "chemical": "Phenylacetone",
+      "chemical": "P2P / Phenylacetone",
       "mw": 134.18,
-      "used_in": "Main Reaction"
+      "used_in": "ch04"
     },
     {
-      "internal_id": "MeAm_HCl",
+      "internal_id": "MA",
       "alias": "Blue Activator",
       "chemical": "Methylamine HCl",
       "mw": 67.52,
-      "used_in": "Main Reaction"
+      "used_in": "ch04"
     },
     {
-      "internal_id": "Al_Foil",
+      "internal_id": "AL",
       "alias": "Silver Mesh",
       "chemical": "Aluminum Foil",
       "mw": 26.98,
-      "used_in": "Main Reaction"
+      "used_in": "ch04"
     },
     {
-      "internal_id": "Hg_Salt",
+      "internal_id": "HGC",
       "alias": "Activation Salt",
       "chemical": "Mercuric Chloride",
       "mw": 271.52,
-      "used_in": "Main Reaction"
+      "used_in": "ch04"
     },
     {
       "internal_id": "IPA",
       "alias": "Solvent 70",
       "chemical": "Isopropanol",
       "mw": 60.10,
-      "used_in": "Main Reaction"
+      "used_in": "ch04"
     },
     {
-      "internal_id": "NaOH",
+      "internal_id": "NAOH",
       "alias": "White Flake",
       "chemical": "Sodium Hydroxide",
       "mw": 40.00,
-      "used_in": "Reaction + Workup"
+      "used_in": "ch04"
     },
     {
-      "internal_id": "Toluene",
+      "internal_id": "TOL",
       "alias": "Thinner X",
       "chemical": "Toluene",
       "mw": 92.14,
-      "used_in": "Workup"
+      "used_in": "ch05"
     },
     {
-      "internal_id": "NaCl",
+      "internal_id": "NACL",
       "alias": "Table White",
       "chemical": "Sodium Chloride",
       "mw": 58.44,
-      "used_in": "HCl Gassing"
+      "used_in": "ch05"
     },
     {
       "internal_id": "H2SO4",
       "alias": "Battery Juice",
       "chemical": "Sulfuric Acid 98%",
       "mw": 98.08,
-      "used_in": "HCl Gassing"
+      "used_in": "ch05"
     },
     {
-      "internal_id": "Acetone",
+      "internal_id": "ACE",
       "alias": "Nail Clear",
       "chemical": "Acetone",
       "mw": 58.08,
-      "used_in": "Gassing + Recryst"
+      "used_in": "ch05"
     }
   ]
 }

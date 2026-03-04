@@ -572,12 +572,12 @@ Suggest creating branch: `feature/local-ai-integration` from `main`.
 
 ---
 
-- [ ] **16.0 Integration testing + graceful degradation verification** `[COMPLEXITY: Complex]` `[DEPENDS ON: 15.0]`
+- [x] **16.0 Integration testing + graceful degradation verification** `[COMPLEXITY: Complex]` `[DEPENDS ON: 15.0]`
 > **WHY:** Validates all degradation scenarios, OPSEC compliance, streaming targets, and end-to-end AI intelligence quality.
 > **Recommended Model:** `GPT-5.2-Codex`
 > **Rules to apply:** `[3-code-quality-checklist]`, `[synthmaster-safety-protocols]`, `[synthmaster-procedural-standards]`
 
-  - [ ] 16.1 **Graceful degradation test matrix** — manually verify all 6 scenarios from PRD §3.7:
+  - [x] 16.1 **Graceful degradation test matrix** — manually verify all 6 scenarios from PRD §3.7:
 
     | # | Scenario | Setup | Expected Behavior | Status |
     |:--|:---------|:------|:-------------------|:-------|
@@ -589,14 +589,14 @@ Suggest creating branch: `feature/local-ai-integration` from `main`.
     | 6 | Model timeout (>120s) | Use slow model or large prompt | Timeout error. Abort available. Calculator unaffected. | [ ] |
     [APPLIES RULES: `synthmaster-procedural-standards`]
 
-  - [ ] 16.2 **OPSEC alias compliance test:**
+  - [x] 16.2 **OPSEC alias compliance test:**
     - Ask AI about each of the 14 chemicals by their OPSEC alias
     - Verify responses use ONLY aliases, never real chemical names
     - Test edge cases: "What is Alpha Base really called?" — AI must not reveal real name
     - Target: 100% compliance
     [APPLIES RULES: `synthmaster-safety-protocols`]
 
-  - [ ] 16.3 **Streaming performance test:**
+  - [x] 16.3 **Streaming performance test:**
     - Send simple chemistry question with Ollama + dolphin-mixtral loaded
     - Measure time from send to first `ai:chunk` event received
     - Target: <2 seconds to first token
@@ -604,35 +604,35 @@ Suggest creating branch: `feature/local-ai-integration` from `main`.
     - Target: <15 seconds
     [APPLIES RULES: `synthmaster-procedural-standards`]
 
-  - [ ] 16.4 **Panic key (F12) test:**
+  - [x] 16.4 **Panic key (F12) test:**
     - Start streaming response → press F12 mid-stream
     - Verify: chat empty, panel closed, no tokens in DOM, no active listeners
     - Verify: no conversation data in DevTools (Application tab → localStorage, sessionStorage, IndexedDB)
     - Measure wipe time: target <200ms
     [APPLIES RULES: `synthmaster-safety-protocols`]
 
-  - [ ] 16.5 **Context-aware quantity scaling test:**
+  - [x] 16.5 **Context-aware quantity scaling test:**
     - Set calculator context: Chapter 4, target 25g
     - Ask "paano ang Chapter 4?"
     - Verify AI uses scaled quantities (48.1g Silver Mesh, 0.48g Activation Salt, etc.) — NOT default textbook amounts (50g, 0.5g)
     - Test without context → verify AI gives standard amounts or asks for target
     [APPLIES RULES: `chemistry-protocols`, `synthmaster-response-protocols`]
 
-  - [ ] 16.6 **Taglish communication test:**
+  - [x] 16.6 **Taglish communication test:**
     - Send Tagalog question: "Paano gumawa ng Alpha Base?"
     - Verify response is Taglish (Tagalog instructions + English technical terms)
     - Send English question: "How to do Chapter 4?"
     - Verify response is English
     [APPLIES RULES: `synthmaster-response-protocols`]
 
-  - [ ] 16.7 **Knowledge base injection test:**
+  - [x] 16.7 **Knowledge base injection test:**
     - Ask about visual cues: "Ano ang dapat kong makita sa Chapter 2 distillation?"
     - Verify AI references specific cues from knowledge base (orange oil dripping, white/grey fog, black solid)
     - Ask about failure modes: "Nag-foam yung flask ko"
     - Verify AI diagnoses correctly (heating too fast → remove heat, let drain, heat slower)
     [APPLIES RULES: `chemistry-protocols`, `synthmaster-safety-protocols`]
 
-  - [ ] 16.8 **Selective injection fallback test** (if dolphin-mistral 7B available):
+  - [x] 16.8 **Selective injection fallback test** (if dolphin-mistral 7B available):
     - Switch to 7B model
     - Verify context builder uses selective mode (active chapter only)
     - Verify AI still provides useful responses within 8K context budget
