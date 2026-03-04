@@ -117,7 +117,7 @@ INSERT INTO process_reagents (process_id, reagent_id, mass_ratio, volume_ratio, 
   ((SELECT id FROM processes WHERE name='reductive_amination_alhg'), (SELECT id FROM reagents WHERE internal_id='IPA'),
     NULL, 2.500, NULL, 'volume', 0, '100mL per 40g P2P. Reaction solvent.'),
   ((SELECT id FROM processes WHERE name='reductive_amination_alhg'), (SELECT id FROM reagents WHERE internal_id='H2O'),
-    NULL, 1.250, NULL, 'volume', 0, '50mL warm water per 40g P2P. For dissolving Blue Activator.'),
+    NULL, 1.250, NULL, 'volume', 0, '50mL warm water per 40g P2P. For dissolving Methylamine HCl.'),
   ((SELECT id FROM processes WHERE name='reductive_amination_alhg'), (SELECT id FROM reagents WHERE internal_id='NAOH'),
     NULL, 0.625, NULL, 'volume', 0, '~25mL 25% NaOH per 40g P2P. Titrate to pH >12. Amount varies.');
 
@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS procedures (
 
 INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failure_mode, failure_fix, emergency_action, temp_target, temp_danger, duration_min, duration_max, severity, pro_tip, image_path) VALUES
   ((SELECT id FROM processes WHERE name='p2p_lead_acetate'), 1,
-    'MIXING: In a stainless steel pot or Pyrex dish, mix the Honey Crystals and Sugar Lead powders.',
+    'MIXING: In a stainless steel pot or Pyrex dish, mix the Phenylacetic Acid and Lead Acetate Trihydrate powders.',
     'Dry white powder mixture.',
     'Wet/clumpy mixture.',
     'Grind finer. Ensure both are completely dry before mixing.',
@@ -250,10 +250,10 @@ INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failur
     NULL, 'procedures/ch2/step5-crude-product.webp'),
 
   ((SELECT id FROM processes WHERE name='p2p_lead_acetate'), 11,
-    'PURIFICATION: Pour crude oil into separatory funnel. Wash with 10% NaOH solution (10g White Flake in 100mL water). Shake 2 min. Drain bottom (waste). Keep top (oil).',
+    'PURIFICATION: Pour crude oil into separatory funnel. Wash with 10% NaOH solution (10g Sodium Hydroxide in 100mL water). Shake 2 min. Drain bottom (waste). Keep top (oil).',
     'Oil floats on top (clear yellow). Dirty water sinks (bottom).',
     'Emulsion forms — layers won''t separate.',
-    'Add more NaOH. Let settle longer. Add pinch of Table White to break emulsion.',
+    'Add more NaOH. Let settle longer. Add pinch of Sodium Chloride to break emulsion.',
     NULL, NULL, NULL, NULL, NULL, 'info',
     NULL, NULL),
 
@@ -267,7 +267,7 @@ INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failur
 
 INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failure_mode, failure_fix, emergency_action, temp_target, temp_danger, duration_min, duration_max, severity, pro_tip, image_path) VALUES
   ((SELECT id FROM processes WHERE name='methylamine_hexamine'), 1,
-    'MIXING: Place crushed Camp Fuel in flask. Pour in Pool Acid.',
+    'MIXING: Place crushed Hexamine in flask. Pour in Muriatic Acid slowly.',
     'Slight fizzing — normal.',
     'Violent fizzing/foaming.',
     'Add acid more slowly. Slight fizz is expected.',
@@ -283,7 +283,7 @@ INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failur
     'GAS MASK is non-negotiable here. Formaldehyde is invisible and causes permanent lung damage. Work outdoors or with forced ventilation.', 'procedures/ch3/step2-hydrolysis.webp'),
 
   ((SELECT id FROM processes WHERE name='methylamine_hexamine'), 3,
-    'HOT FILTRATION: While liquid is still HOT (60-70°C), filter through coffee filter or lab paper. Blue Activator stays dissolved in hot liquid. Ammonium Chloride does not.',
+    'HOT FILTRATION: While liquid is still HOT (60-70°C), filter through coffee filter or lab paper. Methylamine HCl stays dissolved in hot liquid. Ammonium Chloride does not.',
     'White sludge stays in filter (trash). Clear yellow liquid passes through (keep!).',
     'Filtered while cold — everything crystallized together.',
     'Reheat the mixture. Re-filter while hot.',
@@ -299,13 +299,13 @@ INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failur
     NULL, 'procedures/ch3/step4-evaporation.webp'),
 
   ((SELECT id FROM processes WHERE name='methylamine_hexamine'), 5,
-    'ALCOHOL WASH: Add hot Isopropanol 99% (or Ethanol). Boil with sludge. Blue Activator dissolves in hot alcohol. Ammonium Chloride does NOT.',
+    'ALCOHOL WASH: Add hot Isopropanol 99% (or Ethanol). Boil with sludge. Methylamine HCl dissolves in hot alcohol. Ammonium Chloride does NOT.',
     'Hot alcohol dissolves the good product. White residue remains (trash).',
     NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'info',
     NULL, NULL),
 
   ((SELECT id FROM processes WHERE name='methylamine_hexamine'), 6,
-    'FINAL FILTER: Filter the hot alcohol. Solid in filter = Ammonium Chloride (trash). Liquid = Alcohol + Pure Blue Activator.',
+    'FINAL FILTER: Filter the hot alcohol. Solid in filter = Ammonium Chloride (trash). Liquid = Alcohol + Pure Methylamine HCl.',
     'Clear yellow/colorless alcohol filtrate.',
     NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'info',
     NULL, NULL),
@@ -319,10 +319,10 @@ INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failur
     NULL, 'procedures/ch3/step5-crystals.webp'),
 
   ((SELECT id FROM processes WHERE name='methylamine_hexamine'), 8,
-    'VERIFICATION: Melt test — Blue Activator melts at 225-230°C. Ammonium Chloride sublimes at 338°C (just smokes). Smell test — pinch + NaOH drop: fishy = good, urine = bad.',
+    'VERIFICATION: Melt test — Methylamine HCl melts at 225-230°C. Ammonium Chloride sublimes at 338°C (just smokes). Smell test — pinch + NaOH drop: fishy = good, urine = bad.',
     'Crystals melt cleanly at 225-230°C. Fishy smell with NaOH.',
     'Yellow crystals.',
-    'Formaldehyde impurity. Wash with cold Nail Clear (Acetone) to whiten.',
+    'Formaldehyde impurity. Wash with cold Acetone to whiten.',
     NULL, NULL, NULL, NULL, NULL, 'info',
     NULL, NULL);
 
@@ -330,29 +330,29 @@ INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failur
 
 INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failure_mode, failure_fix, emergency_action, temp_target, temp_danger, duration_min, duration_max, severity, pro_tip, image_path) VALUES
   ((SELECT id FROM processes WHERE name='reductive_amination_alhg'), 1,
-    'PRE-FLIGHT: Prepare ice bath (bucket of ice water) RIGHT NEXT TO flask. Prepare Reagent Mix: Alpha Base + Blue Activator dissolved in warm Clean Water + Solvent 70. Mix turns yellow/cloudy (Imine forming).',
+    'PRE-FLIGHT: Prepare ice bath (bucket of ice water) RIGHT NEXT TO flask. Prepare Reagent Mix: Phenylacetone + Methylamine HCl dissolved in warm Distilled Water + Isopropanol 99%. Mix turns yellow/cloudy (Imine forming).',
     'Yellow/cloudy reagent mix in beaker. Ice bath ready.',
     NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'info',
     'Pre-measure EVERYTHING before you start amalgamation. Once the foil is activated, you have 2 minutes. No time to weigh things.', 'procedures/ch4/step1-aluminum-squares.webp'),
 
   ((SELECT id FROM processes WHERE name='reductive_amination_alhg'), 2,
-    'AMALGAMATION: Put Silver Mesh squares in 2L flask. Pour Activation Salt water onto foil. Ensure all foil submerged. Wait 15-30 min.',
+    'AMALGAMATION: Put Aluminum Foil squares in 2L flask. Pour Mercuric Chloride water onto foil. Ensure all foil submerged. Wait 15-30 min.',
     'Nothing for 5-10 min → tiny bubbles → water turns grey/cloudy → shiny foil turns DULL GREY and fizzy.',
     'No fizzing after 30 minutes.',
-    'Amalgamation failed. Add more Activation Salt. Ensure foil is fully submerged. Use fresh foil if foil has coating.',
+    'Amalgamation failed. Add more Mercuric Chloride. Ensure foil is fully submerged. Use fresh foil if foil has coating.',
     NULL, NULL, NULL, 15, 30, 'critical',
     'The 2-minute window is REAL. Have everything pre-measured and ready before you start.', 'procedures/ch4/step2-amalgamation.webp'),
 
   ((SELECT id FROM processes WHERE name='reductive_amination_alhg'), 3,
-    'RINSE: Decant grey mercury water into waste. Add fresh water, swirl, pour off. Repeat once more. You now have clean, wet, ACTIVATED Silver Mesh. ⚠️ 2-MINUTE DEADLINE before it re-oxidizes. MOVE FAST.',
+    'RINSE: Decant grey mercury water into waste. Add fresh water, swirl, pour off. Repeat once more. You now have clean, wet, ACTIVATED Aluminum Foil. ⚠️ 2-MINUTE DEADLINE before it re-oxidizes. MOVE FAST.',
     'Clean wet dull-grey foil. Slight sizzling.',
     'Took too long — foil looks shiny again.',
-    'Re-oxidized. Start amalgamation again with fresh Activation Salt solution.',
+    'Re-oxidized. Start amalgamation again with fresh Mercuric Chloride solution.',
     NULL, NULL, NULL, 2, 3, 'critical',
     NULL, NULL),
 
   ((SELECT id FROM processes WHERE name='reductive_amination_alhg'), 4,
-    'ADDITION: Pour Reagent Mix onto activated Silver Mesh. Turn on magnetic stirrer (vigorous). Slowly drip 25% White Flake solution to release freebase.',
+    'ADDITION: Pour Reagent Mix onto activated Aluminum Foil. Turn on magnetic stirrer (vigorous). Slowly drip 25% Sodium Hydroxide solution to release freebase.',
     'Mixture turns grey/black soup.',
     NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'info',
     NULL, NULL),
@@ -367,10 +367,10 @@ INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failur
     'Ice bath within arm''s reach AT ALL TIMES. Not across the room. Not "nearby." ARM''S REACH.', 'procedures/ch4/step5-thermometer-safe.webp'),
 
   ((SELECT id FROM processes WHERE name='reductive_amination_alhg'), 6,
-    'CRUISE CONTROL: Maintain 40-55°C for 4-6 hours. If boiling (>60°C): dunk in ice bath. If stalled (<30°C): add tiny bit more White Flake or use warm water bath.',
+    'CRUISE CONTROL: Maintain 40-55°C for 4-6 hours. If boiling (>60°C): dunk in ice bath. If stalled (<30°C): add tiny bit more Sodium Hydroxide or use warm water bath.',
     'Steady warm reaction. Bubbling continues. Grey sludge thickens over hours.',
     'Reaction stalled — no heat, no bubbling.',
-    'Add small amount of White Flake (NaOH). Or use warm water bath. Aluminum may have passivated.',
+    'Add small amount of Sodium Hydroxide. Or use warm water bath. Aluminum may have passivated.',
     NULL, 47, 60, 240, 360, 'warning',
     '"Grey sludge thickening" is your success signal. If it stays watery, amalgamation failed.', 'procedures/ch4/step4-grey-sludge.webp'),
 
@@ -384,29 +384,29 @@ INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failur
 
 INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failure_mode, failure_fix, emergency_action, temp_target, temp_danger, duration_min, duration_max, severity, pro_tip, image_path) VALUES
   ((SELECT id FROM processes WHERE name='workup_crystallization'), 1,
-    'BASIFY: Add 50% White Flake solution to grey sludge. Stir well. Check pH paper — MUST be pH 14 (dark purple/black). At pH 14, product turns into oil that floats.',
+    'BASIFY: Add 50% Sodium Hydroxide solution to grey sludge. Stir well. Check pH paper — MUST be pH 14 (dark purple/black). At pH 14, product turns into oil that floats.',
     'pH paper dark purple/black. Sludge becomes more liquid.',
     'Emulsion — layers won''t separate.',
-    'Verify pH 14. Add more White Flake. Let settle longer (10+ min).',
+    'Verify pH 14. Add more Sodium Hydroxide. Let settle longer (10+ min).',
     NULL, NULL, NULL, NULL, NULL, 'warning',
     NULL, NULL),
 
   ((SELECT id FROM processes WHERE name='workup_crystallization'), 2,
-    'EXTRACTION: Pour in 100mL Thinner X (Toluene). Shake vigorously 2 minutes. Vent gas. Pour into separatory funnel. Let settle 10 min. TOP layer = Thinner X + Product (KEEP). BOTTOM = waste sludge (DISCARD).',
+    'EXTRACTION: Pour in 100mL Toluene. Shake vigorously 2 minutes. Vent gas. Pour into separatory funnel. Let settle 10 min. TOP layer = Toluene + Product (KEEP). BOTTOM = waste sludge (DISCARD).',
     'Clear/yellow top layer. Grey bottom layer. Sharp separation line.',
-    'No snow forms during gassing (step 4).',
-    'Product not in Toluene layer. Check: did you keep TOP layer? Was pH really 14?',
+    'Layers won''t separate cleanly.',
+    'Verify pH is 14. Add more Sodium Hydroxide if needed. Let settle longer (15+ min). Add pinch of Sodium Chloride to break emulsion.',
     NULL, NULL, NULL, 15, 20, 'critical',
     'The product is in the TOP layer (toluene). The BOTTOM layer is waste. Don''t mix them up.', 'procedures/ch5/step1-separatory-funnel.webp'),
 
   ((SELECT id FROM processes WHERE name='workup_crystallization'), 3,
-    'DRYING: Add ~20g baked Dry Salt (MgSO4) to Toluene/product mix. Let sit 10 min. Filter through coffee filter into clean dry beaker.',
+    'DRYING: Add ~20g baked Magnesium Sulfate (anhydrous) to Toluene/product mix. Let sit 10 min. Filter through coffee filter into clean dry beaker.',
     'MgSO4 clumps as it absorbs water. Clear Toluene passes through filter.',
     NULL, NULL, NULL, NULL, NULL, 10, 15, 'info',
     NULL, 'procedures/ch5/step2-drying.webp'),
 
   ((SELECT id FROM processes WHERE name='workup_crystallization'), 4,
-    'HCl GASSING: Put 50g Table White in bottle. Squeeze Battery Juice onto salt. White HCl gas shoots out. Bubble tube into Toluene/product. White "snow" forms instantly.',
+    'HCl GASSING: Put 50g Sodium Chloride in bottle. Drip Sulfuric Acid 98% onto salt slowly. White HCl gas shoots out. Bubble tube into Toluene/product. White "snow" forms instantly.',
     'White snow/powder precipitating in Toluene. Continue until no more forms. pH should reach 6-7.',
     'No snow forming.',
     'Check: Is product actually in the Toluene? Verify extraction step. Try more gas.',
@@ -422,7 +422,7 @@ INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failur
     NULL, NULL),
 
   ((SELECT id FROM processes WHERE name='workup_crystallization'), 6,
-    'RECRYSTALLIZATION: Dissolve raw powder in minimum boiling hot Solvent 70 (IPA). Add few drops Nail Clear. Cover. Cool SLOWLY to room temp, then refrigerate. DO NOT TOUCH for 12+ hours.',
+    'RECRYSTALLIZATION: Dissolve raw powder in minimum boiling hot Isopropanol 99%. Add few drops Acetone. Cover. Cool SLOWLY to room temp, then refrigerate. DO NOT TOUCH for 12+ hours.',
     'Long, clear, needle-like shards growing over hours. Slow cooling = big crystals.',
     'Powder formed instead of shards.',
     'Cooled too fast. Redissolve in hot IPA. Cool MORE SLOWLY this time. Minimum 12 hours.',
@@ -430,10 +430,10 @@ INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failur
     'Patience is purity. 12+ hours of slow cooling = large, clean crystals. Fast cooling = powder.', 'procedures/ch5/step4-recrystallization.webp'),
 
   ((SELECT id FROM processes WHERE name='workup_crystallization'), 7,
-    'FINAL WASH: Pour ICE COLD Nail Clear (Acetone) over crystals. Product does NOT dissolve in cold acetone. Yellow impurities DO dissolve. Result: sparkling white crystals. Air dry.',
+    'FINAL WASH: Pour ICE COLD Acetone over crystals. Product does NOT dissolve in cold Acetone. Yellow impurities DO dissolve. Result: sparkling white crystals. Air dry.',
     'Sparkling white crystals. Clear/white. No yellow tint.',
     'Yellow crystals after wash.',
-    'Wash again with more cold Nail Clear. Multiple washes may be needed.',
+    'Wash again with more cold Acetone. Multiple washes may be needed.',
     NULL, NULL, NULL, NULL, NULL, 'info',
     NULL, NULL),
 
