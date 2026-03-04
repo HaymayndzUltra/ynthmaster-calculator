@@ -137,11 +137,45 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
     aiStatus,
     sendMessage,
     abortGeneration,
-    clearChat: _clearChat, // Phase 6 (15.0 panic key) will rename back to clearChat
+    clearChat,
   } = useAIChat();
 
   const messageListRef = useRef<HTMLDivElement>(null);
   const streamContentRef = useRef('');
+
+  // ─── 15.1: Global F12 panic key — OPSEC wipe ─────────────────
+  useEffect(() => {
+    const handlePanicKey = (e: KeyboardEvent): void => {
+      if (e.key !== 'F12') return;
+      e.preventDefault();
+
+      const t0 = performance.now();
+
+      // Step 1: Kill in-flight inference (fire-and-forget IPC, signal sent immediately)
+      window.ai.abort();
+
+      // Step 2: Tell main process to clean up (fire-and-forget IPC)
+      window.ai.clearHistory();
+
+      // Step 3: Wipe renderer state (synchronous — setState + ref resets)
+      clearChat();
+
+      // Step 4: Close AI panel (only if open — onToggle is a toggle, not close)
+      if (isOpen) onToggle();
+
+      // Step 5: (Future integration point) Trigger existing panic key
+      // handler for spreadsheet view toggle when Phase 5 base PRD is built.
+      // e.g. window.dispatchEvent(new CustomEvent('panic:spreadsheet'));
+
+      if (import.meta.env.DEV) {
+        const elapsed = performance.now() - t0;
+        console.debug(`[OPSEC] Panic wipe completed in ${elapsed.toFixed(2)}ms (target: <200ms)`);
+      }
+    };
+
+    document.addEventListener('keydown', handlePanicKey);
+    return () => document.removeEventListener('keydown', handlePanicKey);
+  }, [clearChat, onToggle, isOpen]);
 
   // ─── Auto-scroll to bottom on new messages / streaming ────────
   const scrollToBottom = useCallback(() => {

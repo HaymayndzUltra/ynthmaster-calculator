@@ -501,12 +501,12 @@ Suggest creating branch: `feature/local-ai-integration` from `main`.
 
 ---
 
-- [ ] **14.0 Implement AIAssistant panel + integrate into App.tsx** `[COMPLEXITY: Complex]` `[DEPENDS ON: 9.0, 10.0, 11.0, 12.0, 13.0]`
+- [x] **14.0 Implement AIAssistant panel + integrate into App.tsx** `[COMPLEXITY: Complex]` `[DEPENDS ON: 9.0, 10.0, 11.0, 12.0, 13.0]`
 > **WHY:** Assembles all sub-components into the collapsible side panel. This is where calculatorContext flows into the AI system.
 > **Recommended Model:** `Sonnet 4.5`
 > **Rules to apply:** `[common-rule-ui-foundation-design-system]`, `[common-rule-ui-interaction-a11y-perf]`, `[4-code-modification-safety-protocol]`
 
-  - [ ] 14.1 **Create `src/components/AIAssistant/AIAssistant.tsx`:**
+  - [x] 14.1 **Create `src/components/AIAssistant/AIAssistant.tsx`:**
     - Props: `isOpen`, `onToggle`, `calculatorContext?`
     - Use `useAIChat()` hook for all state
     - Layout: collapsible right-side panel (300-400px width)
@@ -516,13 +516,13 @@ Suggest creating branch: `feature/local-ai-integration` from `main`.
     - Auto-scroll to bottom on new messages and during streaming
     [APPLIES RULES: `common-rule-ui-foundation-design-system`, `common-rule-ui-interaction-a11y-perf`]
 
-  - [ ] 14.2 **Implement panel open/close animation:**
+  - [x] 14.2 **Implement panel open/close animation:**
     - CSS transition: slide-in from right
     - Toggle button visible even when panel is closed (fixed position icon)
     - Panel width: 360px default, responsive (smaller on narrow screens)
     [APPLIES RULES: `common-rule-ui-foundation-design-system`]
 
-  - [ ] 14.3 **Modify `src/App.tsx`:** Mount the AIAssistant panel:
+  - [x] 14.3 **Modify `src/App.tsx`:** Mount the AIAssistant panel:
     - Add state: `aiPanelOpen: boolean` (default: false)
     - Pass `calculatorContext` from existing calculator state to `<AIAssistant>` props
     - Layout: existing content takes remaining width, AI panel overlays or pushes from right
@@ -535,12 +535,12 @@ Suggest creating branch: `feature/local-ai-integration` from `main`.
 
 ---
 
-- [ ] **15.0 Implement F12 panic key AI wipe** `[COMPLEXITY: Complex]` `[DEPENDS ON: 14.0]`
+- [x] **15.0 Implement F12 panic key AI wipe** `[COMPLEXITY: Complex]` `[DEPENDS ON: 14.0]`
 > **WHY:** OPSEC-critical. F12 must: abort inference, clear chat, kill listeners, collapse panel — all in <200ms with zero disk artifacts.
 > **Recommended Model:** `GPT-5.2-Codex`
 > **Rules to apply:** `[4-code-modification-safety-protocol]`, `[synthmaster-safety-protocols]`, `[3-code-quality-checklist]`
 
-  - [ ] 15.1 **Implement global F12 keydown listener** in `AIAssistant.tsx` (or App-level):
+  - [x] 15.1 **Implement global F12 keydown listener** in `AIAssistant.tsx` (or App-level):
     - `useEffect` → `document.addEventListener('keydown', handlePanicKey)`
     - On F12: execute the 5-step wipe sequence from PRD §3.6:
       1. `window.ai.abort()` — kill in-flight inference
@@ -551,14 +551,14 @@ Suggest creating branch: `feature/local-ai-integration` from `main`.
     - Cleanup: remove listener on unmount
     [APPLIES RULES: `4-code-modification-safety-protocol`, `synthmaster-safety-protocols`]
 
-  - [ ] 15.2 **Verify zero-disk-artifact guarantee:**
+  - [x] 15.2 **Verify zero-disk-artifact guarantee:**
     - Audit: `messages[]` only exists in React state (never written to localStorage, sessionStorage, IndexedDB, or filesystem)
     - Audit: main process `aiHandlers` does not log, persist, or cache conversation data
     - Audit: Ollama server logs (user's responsibility — document in README that Ollama may log; recommend `OLLAMA_NOHISTORY=1` env var if available)
     - No `console.log` of message content in production builds
     [APPLIES RULES: `synthmaster-safety-protocols`, `3-code-quality-checklist`]
 
-  - [ ] 15.3 **Verify <200ms wipe target:**
+  - [x] 15.3 **Verify <200ms wipe target:**
     - `abort()` is synchronous (AbortController.abort)
     - `clearHistory()` is async but fire-and-forget
     - State reset is synchronous React setState

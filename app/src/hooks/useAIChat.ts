@@ -162,18 +162,22 @@ export function useAIChat(): UseAIChatReturn {
   }, []);
 
   // ─── 9.7: clearChat ───────────────────────────────────────────
-  const clearChat = useCallback(async (): Promise<void> => {
-    try {
-      await window.ai.abort();
-      await window.ai.clearHistory();
-    } catch (err) {
-      console.error('useAIChat: clearChat failed:', err);
-    }
-
+  // State reset is synchronous and comes FIRST so that when
+  // the F12 panic handler calls clearChat() without await, the
+  // renderer state is wiped immediately (<200ms OPSEC target).
+  // IPC calls to main process are fire-and-forget cleanup.
+  const clearChat = useCallback((): void => {
     setMessages([]);
     streamContentRef.current = '';
     isStreamingRef.current = false;
     setIsStreaming(false);
+
+    window.ai.abort().catch((err: unknown) => {
+      console.error('useAIChat: clearChat abort failed:', err);
+    });
+    window.ai.clearHistory().catch((err: unknown) => {
+      console.error('useAIChat: clearChat clearHistory failed:', err);
+    });
   }, []);
 
   return {
