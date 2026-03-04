@@ -12,8 +12,17 @@ let aiInitialized = false;
 
 function createWindow(): void {
   mainWindow = new BrowserWindow({
-    width: 1200,
+    width: 1280,
     height: 800,
+    minWidth: 800,
+    minHeight: 600,
+    backgroundColor: '#06080C',
+    titleBarStyle: 'hidden',
+    titleBarOverlay: {
+      color: '#06080C',
+      symbolColor: '#8A95A8',
+      height: 32,
+    },
     webPreferences: {
       preload: join(__dirname, 'preload.js'),
       contextIsolation: true,

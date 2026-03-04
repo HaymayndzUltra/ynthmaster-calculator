@@ -161,4 +161,63 @@ Check Ollama's documentation for the latest environment variables controlling lo
 
 ---
 
+## Project Alpha — UI Design System
+
+### Component Inventory
+
+| Component | File | Purpose |
+|:----------|:-----|:--------|
+| `OnboardingScreen` | `src/components/Calculator/OnboardingScreen.tsx` | Screen 1: Target yield input with entrance choreography |
+| `IngredientChecklist` | `src/components/Calculator/IngredientChecklist.tsx` | Screen 2: Chapter-grouped reagent checklist with progress |
+| `ChapterView` | `src/components/Calculator/ChapterView.tsx` | Screen 3: Single-step execution with top bar + bottom nav |
+| `ProcedureStep` | `src/components/Calculator/ProcedureStep.tsx` | Individual step card with severity, visual cues, failure modes |
+| `StepImage` | `src/components/Calculator/StepImage.tsx` | Reference image with lazy loading + lightbox trigger |
+| `ProTip` | `src/components/Calculator/ProTip.tsx` | Purple "Operator Tip" card |
+| `StepDots` | `src/components/Calculator/StepDots.tsx` | Clickable step progress indicator dots |
+| `ProgressRing` | `src/components/Calculator/ProgressRing.tsx` | Circular SVG progress indicator |
+| `TemperatureMonitor` | `src/components/Calculator/TemperatureMonitor.tsx` | Floating widget: temp range, danger threshold, status |
+| `ReactionTimer` | `src/components/Calculator/ReactionTimer.tsx` | Floating widget: HH:MM:SS timer with pause/reset |
+| `EmergencyStopBar` | `src/components/Calculator/EmergencyStopBar.tsx` | Sticky bottom emergency bar |
+| `EmergencyOverlay` | `src/components/Calculator/EmergencyOverlay.tsx` | Full-screen emergency procedures overlay |
+| `ImageLightbox` | `src/components/Calculator/ImageLightbox.tsx` | Full-screen image viewer with blur animation |
+| `Skeleton` | `src/components/Calculator/Skeleton.tsx` | Loading placeholder (rect/circle/text variants) |
+| `ErrorBoundary` | `src/components/Calculator/ErrorBoundary.tsx` | App/Sidebar/Content/Widget error boundaries |
+| `SkipLink` | `src/components/Calculator/SkipLink.tsx` | Accessibility skip-to-content link |
+
+### Hooks
+
+| Hook | File | Purpose |
+|:-----|:-----|:--------|
+| `useCalculator` | `src/hooks/useCalculator.ts` | Core state: yields, chapters, steps, timer, screen mode |
+| `useReducedMotion` | `src/hooks/useReducedMotion.ts` | `prefers-reduced-motion` media query |
+| `useFocusTrap` | `src/hooks/useFocusTrap.ts` | Tab cycling within overlays, Escape to close |
+| `useKeyboardShortcuts` | `src/hooks/useKeyboardShortcuts.ts` | Centralized shortcut registration |
+| `useDraggable` | `src/hooks/useDraggable.ts` | Drag-to-reposition for floating widgets |
+| `useToast` | `src/hooks/useToast.tsx` | Toast notification context + hook |
+
+### Keyboard Shortcuts
+
+| Shortcut | Action | Screen |
+|:---------|:-------|:-------|
+| `Ctrl+1-5` | Jump to chapter | Checklist, Execution |
+| `ArrowLeft/Right` | Previous/Next step | Execution |
+| `Ctrl+ArrowLeft/Right` | Previous/Next chapter | Execution |
+| `Enter` | Submit target yield | Onboarding |
+| `Escape` | Close overlay / Reset input | All |
+| `F12` | Toggle panic mode | Global |
+
+### Design Tokens
+
+45 color tokens, 12 font sizes, 9 spacing values, 5 easing curves, 6 durations, 8 z-index layers defined in `src/index.css` as CSS custom properties.
+
+### Build Budgets
+
+| Resource | Budget | Actual |
+|:---------|:-------|:-------|
+| CSS (gzip) | <50KB | 9.2KB ✅ |
+| JS (gzip) | <300KB | 118.5KB ✅ |
+| Font bundle | <200KB | 611KB ⚠️ (needs Latin subset) |
+
+---
+
 **Status: ACTIVE | Version: 1.0 | Mode: CSOG_OPERATOR**

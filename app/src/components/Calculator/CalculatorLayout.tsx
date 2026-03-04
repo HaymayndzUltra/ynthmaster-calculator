@@ -139,30 +139,36 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ calculator }
 
       {/* ── Left sidebar: Pipeline Nav ────────────────────── */}
       <SidebarErrorBoundary>
-      <div className="w-[200px] shrink-0 border-r flex flex-col" style={{ borderColor: 'var(--border-default)', backgroundColor: 'var(--bg-deep)' }}>
+      <div className="sidebar-full shrink-0 border-r flex flex-col" style={{ borderColor: 'var(--border-default)', backgroundColor: 'var(--bg-deep)' }}>
         {/* Logo area */}
-        <div className="px-5 py-5 border-b" style={{ borderColor: 'var(--border-default)' }}>
-          <div className="text-[10px] font-bold tracking-[2px] uppercase" style={{ color: 'var(--text-muted)' }}>Project Alpha</div>
-          <div className="text-sm font-bold text-white mt-0.5">Calculator</div>
+        <div className="px-5 py-5 border-b overflow-hidden" style={{ borderColor: 'var(--border-default)' }}>
+          <div className="sidebar-label text-[10px] font-bold tracking-[2px] uppercase" style={{ color: 'var(--text-muted)' }}>Project Alpha</div>
+          <div className="sidebar-label text-sm font-bold text-white mt-0.5">Calculator</div>
         </div>
 
         {/* Chapter nav */}
-        <nav className="flex-1 py-3 px-2 space-y-0.5" aria-label="Pipeline chapters">
+        <nav className="flex-1 py-3 px-2 space-y-0.5 relative" role="tablist" aria-label="Pipeline chapters">
           {CHAPTERS.map((ch) => {
             const isActive = activeChapter === ch.num;
             const isPast = ch.num < activeChapter;
             const ChIcon = ch.Icon;
+
+            // Mini progress bar data (Ch2-5 only)
+            const chCompleted = ch.num >= 2 ? (completedSteps.get(ch.num)?.size ?? 0) : 0;
+            const chTotal = ch.num === activeChapter ? (procedures.length || 1) : (ch.num >= 2 ? 12 : 0);
+            const progressPct = chTotal > 0 ? Math.round((chCompleted / chTotal) * 100) : 0;
 
             return (
               <button
                 key={ch.num}
                 role="tab"
                 aria-selected={isActive}
+                aria-label={`Chapter ${ch.num}: ${ch.label}${isActive ? ' (current)' : isPast ? ' (completed)' : ''}`}
                 onClick={() => {
                   setActiveChapter(ch.num);
                   if (screenMode === 'checklist') setScreenMode('execution');
                 }}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-150 cursor-pointer border
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-150 cursor-pointer border relative
                   ${isActive
                     ? 'bg-blue-500/[0.08] border-blue-500/20 text-blue-400'
                     : isPast
@@ -171,22 +177,55 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ calculator }
                   }
                 `}
               >
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
-                  isActive ? 'bg-blue-500/15' : isPast ? 'bg-[#111620]' : 'bg-[#0C1017]'
-                }`}>
-                  {isPast && !isActive ? (
-                    <Check size={14} className="text-emerald-500/60" />
-                  ) : (
-                    <ChIcon size={16} className={isActive ? 'text-blue-400' : 'text-slate-600'} />
+                <div className="relative">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                    isActive ? 'bg-blue-500/15' : isPast ? 'bg-[#111620]' : 'bg-[#0C1017]'
+                  }`}>
+                    {isPast && !isActive ? (
+                      <Check size={14} className="text-emerald-500/60" />
+                    ) : (
+                      <ChIcon size={16} className={isActive ? 'text-blue-400' : 'text-slate-600'} />
+                    )}
+                  </div>
+                  {/* Screen mode indicator: pulsing dot (execution) or cart badge (checklist) */}
+                  {isActive && screenMode === 'execution' && (
+                    <span
+                      className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full animate-pulse"
+                      style={{ backgroundColor: 'var(--accent-blue)', boxShadow: '0 0 6px rgba(76,158,255,0.4)' }}
+                    />
+                  )}
+                  {ch.num === 1 && screenMode === 'checklist' && (
+                    <span
+                      className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full flex items-center justify-center text-[7px] font-bold text-white"
+                      style={{ backgroundColor: 'var(--accent-blue)' }}
+                    >
+                      ✓
+                    </span>
                   )}
                 </div>
-                <div>
+                <div className="flex-1 min-w-0 sidebar-label">
                   <div className={`text-[12px] font-semibold ${isActive ? 'text-blue-300' : ''}`}>
                     {ch.label}
                   </div>
                   <div className="text-[9px]" style={{ color: 'var(--text-dim)' }}>
                     Ch {ch.num}
                   </div>
+                  {/* Mini progress bar (Ch2-5 only) */}
+                  {ch.num >= 2 && (
+                    <div
+                      className="mt-1 h-[2px] rounded-full overflow-hidden"
+                      style={{ backgroundColor: 'var(--bg-elevated)' }}
+                    >
+                      <div
+                        className="h-full rounded-full"
+                        style={{
+                          width: `${progressPct}%`,
+                          background: isActive ? 'var(--accent-blue)' : isPast ? 'var(--accent-green)' : 'var(--text-dim)',
+                          transition: isReducedMotion ? 'none' : 'width 300ms var(--ease-out-expo)',
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
               </button>
             );

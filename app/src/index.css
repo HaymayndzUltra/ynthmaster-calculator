@@ -299,3 +299,25 @@
 .contain-layout {
   contain: layout style;
 }
+
+/* ── Responsive Sidebar (PRD §8.3) ───────────────────── */
+.sidebar-full {
+  width: 200px;
+  transition: width 250ms var(--ease-out-expo);
+}
+.sidebar-label {
+  opacity: 1;
+  transition: opacity 150ms var(--ease-out-expo);
+}
+@media (max-width: 1279px) and (min-width: 1024px) {
+  .sidebar-full { width: 56px; }
+  .sidebar-label { opacity: 0; pointer-events: none; width: 0; overflow: hidden; }
+}
+@media (max-width: 1023px) {
+  .sidebar-full { width: 0; overflow: hidden; border: none; padding: 0; }
+  .sidebar-label { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-full { transition: none; }
+  .sidebar-label { transition: none; }
+}

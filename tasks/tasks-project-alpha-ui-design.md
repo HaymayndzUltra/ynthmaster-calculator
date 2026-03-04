@@ -270,10 +270,10 @@ No dependencies — all tasks in this phase can be executed in parallel.
 > **Recommended Model:** `Craftsman (GPT-5.2)`
 > **Rules to apply:** `[4-code-modification-safety-protocol]`, `[common-rule-ui-interaction-a11y-perf]`
 
-- [ ] 12.1 **Mini Progress Bar per Chapter:** Below each chapter label (Ch2-5), add 2px progress bar: `completedSteps / totalSteps`. Blue fill (active), green (completed), muted (future). 300ms ease-out-expo on fill. [APPLIES RULES: `4-code-modification-safety-protocol`]
-- [ ] 12.2 **Sliding Active Indicator:** Replace instant bg switch with absolute-positioned blue bg element that `translateY`s to active item position. 250ms ease-out-expo. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
-- [ ] 12.3 **Screen Mode Indicator:** Screen 1: "Setup" context. Screen 2: shopping cart badge on Ch1. Screen 3: pulsing blue dot beside active chapter icon. [APPLIES RULES: `common-rule-ui-foundation-design-system`]
-- [ ] 12.4 **ARIA for Sidebar:** `<nav aria-label="Pipeline chapters">`. Each item: `<button role="tab">` within `role="tablist"`. Active: `aria-selected="true"`. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
+- [x] 12.1 **Mini Progress Bar per Chapter:** Below each chapter label (Ch2-5), add 2px progress bar: `completedSteps / totalSteps`. Blue fill (active), green (completed), muted (future). 300ms ease-out-expo on fill. [APPLIES RULES: `4-code-modification-safety-protocol`]
+- [x] 12.2 **Sliding Active Indicator:** Replace instant bg switch with absolute-positioned blue bg element that `translateY`s to active item position. 250ms ease-out-expo. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
+- [x] 12.3 **Screen Mode Indicator:** Screen 1: "Setup" context. Screen 2: shopping cart badge on Ch1. Screen 3: pulsing blue dot beside active chapter icon. [APPLIES RULES: `common-rule-ui-foundation-design-system`]
+- [x] 12.4 **ARIA for Sidebar:** `<nav aria-label="Pipeline chapters">`. Each item: `<button role="tab">` within `role="tablist"`. Active: `aria-selected="true"`. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
 
 ---
 
@@ -283,8 +283,8 @@ No dependencies — all tasks in this phase can be executed in parallel.
 > **Recommended Model:** `Architect (Claude Opus 4.5)`
 > **Rules to apply:** `[4-code-modification-safety-protocol]`, `[3-code-quality-checklist]`
 
-- [ ] 13.1 **BrowserWindow Config Update:** Update `app/electron/main.ts` per PRD §8.4: `backgroundColor: '#06080C'`, `minWidth: 800`, `minHeight: 600`, `width: 1280`, `height: 800`, `titleBarStyle: 'hidden'`, `titleBarOverlay` config with matching colors. [APPLIES RULES: `4-code-modification-safety-protocol`]
-- [ ] 13.2 **Verify Preload + Context Isolation:** Confirm `contextIsolation: true`, `nodeIntegration: false` are preserved. No regression to existing IPC. [APPLIES RULES: `3-code-quality-checklist`]
+- [x] 13.1 **BrowserWindow Config Update:** Update `app/electron/main.ts` per PRD §8.4: `backgroundColor: '#06080C'`, `minWidth: 800`, `minHeight: 600`, `width: 1280`, `height: 800`, `titleBarStyle: 'hidden'`, `titleBarOverlay` config with matching colors. [APPLIES RULES: `4-code-modification-safety-protocol`]
+- [x] 13.2 **Verify Preload + Context Isolation:** Confirm `contextIsolation: true`, `nodeIntegration: false` are preserved. No regression to existing IPC. [APPLIES RULES: `3-code-quality-checklist`]
 
 ---
 
@@ -294,10 +294,10 @@ No dependencies — all tasks in this phase can be executed in parallel.
 > **Recommended Model:** `Craftsman (GPT-5.2)`
 > **Rules to apply:** `[common-rule-ui-foundation-design-system]`, `[common-rule-ui-interaction-a11y-perf]`
 
-- [ ] 14.1 **Sidebar Responsive Collapse:** `xl` (≥1280px): full 200px. `lg` (1024-1279px): icon-only 56px — labels fade out (150ms) then width shrinks (250ms). `md` (800-1023px): hidden, hamburger menu overlay (350ms slide from left, `z-overlay` backdrop). [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
-- [ ] 14.2 **Widget Responsive Behavior:** `xl`: floating, expanded. `lg`: floating, collapsed pill default, expand on hover. `md`: inline cards within step content flow, not floating. [APPLIES RULES: `common-rule-ui-foundation-design-system`]
-- [ ] 14.3 **Content Area Responsive:** Main content fills available space after sidebar. Max-width 720px centered. Padding adjusts per breakpoint. [APPLIES RULES: `common-rule-ui-foundation-design-system`]
-- [ ] 14.4 **Screen 1 Responsive:** Per task 6.8 — verify card, input, and CTA sizing at all breakpoints. [APPLIES RULES: `common-rule-ui-foundation-design-system`]
+- [x] 14.1 **Sidebar Responsive Collapse:** `xl` (≥1280px): full 200px. `lg` (1024-1279px): icon-only 56px — labels fade out (150ms) then width shrinks (250ms). `md` (800-1023px): hidden, hamburger menu overlay (350ms slide from left, `z-overlay` backdrop). [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
+- [x] 14.2 **Widget Responsive Behavior:** `xl`: floating, expanded. `lg`: floating, collapsed pill default, expand on hover. `md`: inline cards within step content flow, not floating. [APPLIES RULES: `common-rule-ui-foundation-design-system`]
+- [x] 14.3 **Content Area Responsive:** Main content fills available space after sidebar. Max-width 720px centered. Padding adjusts per breakpoint. [APPLIES RULES: `common-rule-ui-foundation-design-system`]
+- [x] 14.4 **Screen 1 Responsive:** Per task 6.8 — verify card, input, and CTA sizing at all breakpoints. [APPLIES RULES: `common-rule-ui-foundation-design-system`]
 
 ---
 
@@ -307,15 +307,15 @@ No dependencies — all tasks in this phase can be executed in parallel.
 > **Recommended Model:** `Optimizer (DeepSeek V3.2)`
 > **Rules to apply:** `[common-rule-ui-interaction-a11y-perf]`, `[common-rule-ui-premium-brand-dataviz-enterprise]`
 
-- [ ] 15.1 **WCAG AA Contrast Audit:** Verify all text token pairs from PRD §3.1 against their backgrounds using browser DevTools. Body text ≥4.5:1, large text ≥3:1, interactive UI ≥3:1. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
-- [ ] 15.2 **Keyboard Navigation Audit:** Test full keyboard shortcut matrix from PRD §9. Verify: Tab order follows visual flow. `Escape` closes overlays. Arrow keys navigate steps. `Mod+1-5` jumps chapters. No Electron/OS conflicts. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
-- [ ] 15.3 **ARIA Compliance Audit:** Verify all ARIA patterns from PRD §11.3: sidebar tablist, progress bar, emergency alerts, timer live regions, lightbox dialog, checklist groups, severity labels, loading skeletons. Screen reader test (NVDA or built-in). [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
-- [ ] 15.4 **Color-Blind Safety Audit:** Test all severity levels (info/warning/critical/emergency/safe) under Deuteranopia, Protanopia, Tritanopia in Chrome DevTools. Verify redundant coding (color + icon + text label + border weight). [APPLIES RULES: `common-rule-ui-premium-brand-dataviz-enterprise`]
-- [ ] 15.5 **Reduced Motion Audit:** Toggle `prefers-reduced-motion: reduce`. Verify: all animations disabled, emergency pulse → static 3px red border, skeleton shimmer → static grey, screen transitions → instant. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
-- [ ] 15.6 **Interaction Performance Audit:** Measure per PRD §12.1: recalculation <150ms, screen transition <100ms, step navigation <50ms, F12 <200ms, checkbox <16ms. Use Electron DevTools Performance tab. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
-- [ ] 15.7 **Resource Budget Audit:** Verify per PRD §12.2: total images <15MB, font bundle <200KB, CSS <50KB gzipped, JS <300KB gzipped, memory <80MB peak. Tree-shake Lucide icons. [APPLIES RULES: `common-rule-ui-premium-brand-dataviz-enterprise`]
-- [ ] 15.8 **GPU Performance Audit:** Verify per PRD §3.7.1a: only `transform` and `opacity` animated, `will-change` applied dynamically, stagger max 12 items, no simultaneous blur animations, `contain: layout style` on all cards. Sustained 60fps during transitions. Conditional: disable blur if `navigator.hardwareConcurrency < 4`. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
-- [ ] 15.9 **Documentation Update:** Update `README.md` with new component inventory, design system reference, and keyboard shortcuts. [APPLIES RULES: `5-documentation-context-integrity`]
+- [x] 15.1 **WCAG AA Contrast Audit:** Verify all text token pairs from PRD §3.1 against their backgrounds using browser DevTools. Body text ≥4.5:1, large text ≥3:1, interactive UI ≥3:1. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
+- [x] 15.2 **Keyboard Navigation Audit:** Test full keyboard shortcut matrix from PRD §9. Verify: Tab order follows visual flow. `Escape` closes overlays. Arrow keys navigate steps. `Mod+1-5` jumps chapters. No Electron/OS conflicts. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
+- [x] 15.3 **ARIA Compliance Audit:** Verify all ARIA patterns from PRD §11.3: sidebar tablist, progress bar, emergency alerts, timer live regions, lightbox dialog, checklist groups, severity labels, loading skeletons. Screen reader test (NVDA or built-in). [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
+- [x] 15.4 **Color-Blind Safety Audit:** Test all severity levels (info/warning/critical/emergency/safe) under Deuteranopia, Protanopia, Tritanopia in Chrome DevTools. Verify redundant coding (color + icon + text label + border weight). [APPLIES RULES: `common-rule-ui-premium-brand-dataviz-enterprise`]
+- [x] 15.5 **Reduced Motion Audit:** Toggle `prefers-reduced-motion: reduce`. Verify: all animations disabled, emergency pulse → static 3px red border, skeleton shimmer → static grey, screen transitions → instant. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
+- [x] 15.6 **Interaction Performance Audit:** Measure per PRD §12.1: recalculation <150ms, screen transition <100ms, step navigation <50ms, F12 <200ms, checkbox <16ms. Use Electron DevTools Performance tab. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
+- [x] 15.7 **Resource Budget Audit:** Verify per PRD §12.2: total images <15MB, font bundle <200KB, CSS <50KB gzipped, JS <300KB gzipped, memory <80MB peak. Tree-shake Lucide icons. [APPLIES RULES: `common-rule-ui-premium-brand-dataviz-enterprise`]
+- [x] 15.8 **GPU Performance Audit:** Verify per PRD §3.7.1a: only `transform` and `opacity` animated, `will-change` applied dynamically, stagger max 12 items, no simultaneous blur animations, `contain: layout style` on all cards. Sustained 60fps during transitions. Conditional: disable blur if `navigator.hardwareConcurrency < 4`. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
+- [x] 15.9 **Documentation Update:** Update `README.md` with new component inventory, design system reference, and keyboard shortcuts. [APPLIES RULES: `5-documentation-context-integrity`]
 
 ---
 
