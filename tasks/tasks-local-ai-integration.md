@@ -344,12 +344,12 @@ Suggest creating branch: `feature/local-ai-integration` from `main`.
 
 ---
 
-- [ ] **7.0 Extend preload.ts with window.ai bridge** `[COMPLEXITY: Simple]` `[DEPENDS ON: 1.0, 6.0]`
+- [x] **7.0 Extend preload.ts with window.ai bridge** `[COMPLEXITY: Simple]` `[DEPENDS ON: 1.0, 6.0]`
 > **WHY:** The renderer cannot call IPC directly (contextIsolation:true). This exposes the `window.ai` namespace — the ONLY way React components talk to the AI backend. Dedicated namespace because streaming requires listener cleanup (unsubscribe functions) not supported by the generic `electronAPI` bridge.
 > **Recommended Model:** `Opus 4.5`
 > **Rules to apply:** `[3-code-quality-checklist]`, `[4-code-modification-safety-protocol]`
 
-  - [ ] 7.1 **Modify `electron/preload.ts`:** Add `window.ai` namespace via `contextBridge.exposeInMainWorld('ai', { ... })`:
+  - [x] 7.1 **Modify `electron/preload.ts`:** Add `window.ai` namespace via `contextBridge.exposeInMainWorld('ai', { ... })`:
     - `chat(messages, calculatorContext?)` → `ipcRenderer.invoke('ai:chat', { messages, calculatorContext })`
     - `abort()` → `ipcRenderer.invoke('ai:abort')`
     - `getStatus()` → `ipcRenderer.invoke('ai:status')`
@@ -359,7 +359,7 @@ Suggest creating branch: `feature/local-ai-integration` from `main`.
     - Both `onChunk` and `onError` return cleanup functions `() => ipcRenderer.removeListener(...)`
     [APPLIES RULES: `3-code-quality-checklist`, `4-code-modification-safety-protocol`]
 
-  - [ ] 7.2 **Modify `src/vite-env.d.ts`:** Add `Window.ai` type declaration:
+  - [x] 7.2 **Modify `src/vite-env.d.ts`:** Add `Window.ai` type declaration:
     - Augment global `Window` interface with all 6 methods matching the preload bridge
     - Import types from `src/types/ai.ts` or inline them
     [APPLIES RULES: `3-code-quality-checklist`]
