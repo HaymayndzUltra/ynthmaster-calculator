@@ -1,50 +1,85 @@
-import { app, BrowserWindow } from 'electron'
-import path from 'node:path'
+import { app, BrowserWindow } from 'electron';
+import { join } from 'path';
+import { readFileSync } from 'fs';
+import { registerAIHandlers } from './ipc/aiHandlers';
+import type { OpsecMappingFile } from '../src/types/ai';
 
-process.env.DIST_ELECTRON = path.join(__dirname)
-process.env.DIST = path.join(process.env.DIST_ELECTRON, '../dist')
-process.env.VITE_PUBLIC = process.env.VITE_DEV_SERVER_URL
-  ? path.join(process.env.DIST_ELECTRON, '../public')
-  : process.env.DIST
+let mainWindow: BrowserWindow | null = null;
+let modelManagerRef: { modelManager: ReturnType<typeof registerAIHandlers>['modelManager'] } | null = null;
 
-let mainWindow: BrowserWindow | null = null
-
-function createWindow() {
+function createWindow(): void {
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
-    minWidth: 900,
-    minHeight: 600,
-    title: 'Project Alpha Calculator',
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: false,
+      preload: join(__dirname, 'preload.js'),
       contextIsolation: true,
+      nodeIntegration: false,
     },
-  })
+  });
 
-  if (process.env.VITE_DEV_SERVER_URL) {
-    mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL)
-    mainWindow.webContents.openDevTools()
+  // In development, load from Vite dev server; in production, load built files
+  if (process.env.NODE_ENV === 'development') {
+    mainWindow.loadURL('http://localhost:5173');
   } else {
-    mainWindow.loadFile(path.join(process.env.DIST!, 'index.html'))
+    mainWindow.loadFile(join(__dirname, '..', 'dist', 'index.html'));
   }
-
-  mainWindow.on('closed', () => {
-    mainWindow = null
-  })
 }
 
-app.whenReady().then(createWindow)
+function initializeAI(): void {
+  if (!mainWindow) return;
+
+  // Load opsecMapping.json
+  let opsecMap: OpsecMappingFile = { version: '1.0', description: '', mappings: [] };
+  try {
+    const opsecPath = join(__dirname, '..', 'data', 'opsecMapping.json');
+    const raw = readFileSync(opsecPath, 'utf-8');
+    opsecMap = JSON.parse(raw) as OpsecMappingFile;
+  } catch {
+    // opsecMapping.json missing — AI will work without OPSEC aliases
+  }
+
+  // Database stub — will be replaced when SQLite is wired in parent PRD tasks
+  // For now, provide a no-op adapter that returns empty arrays for all queries
+  const db = {
+    all: () => [],
+  };
+
+  // Register AI IPC handlers
+  const result = registerAIHandlers(mainWindow, db, opsecMap);
+  modelManagerRef = result;
+
+  // Start health polling when window is ready
+  mainWindow.webContents.once('did-finish-load', () => {
+    result.modelManager.startHealthPolling((status) => {
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        mainWindow.webContents.send('ai:status-changed', status);
+      }
+    });
+  });
+
+  // Stop polling on window close
+  mainWindow.on('closed', () => {
+    result.modelManager.stopHealthPolling();
+    modelManagerRef = null;
+    mainWindow = null;
+  });
+}
+
+app.whenReady().then(() => {
+  createWindow();
+  initializeAI();
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+      initializeAI();
+    }
+  });
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
   }
-})
-
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow()
-  }
-})
+});
