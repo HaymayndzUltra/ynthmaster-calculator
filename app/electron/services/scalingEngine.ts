@@ -49,6 +49,7 @@ interface ProcessRow {
 
 interface ProcessReagentRow {
   internal_id: string;
+  name: string;
   alias: string;
   molecular_weight: number;
   mass_ratio: number | null;
@@ -187,7 +188,7 @@ export class ScalingEngine {
    */
   private scaleChapterReagents(chapter: number, baselineInputG: number): ScaledReagent[] {
     const rows = this.db.all<ProcessReagentRow>(
-      `SELECT r.internal_id, r.alias, r.molecular_weight,
+      `SELECT r.internal_id, r.name, r.alias, r.molecular_weight,
               pr.mass_ratio, pr.volume_ratio, pr.molar_ratio,
               pr.ratio_type, pr.is_baseline, pr.notes
        FROM process_reagents pr
@@ -218,6 +219,7 @@ export class ScalingEngine {
 
       return {
         internalId: row.internal_id,
+        realName: row.name,
         alias: row.alias,
         chapter,
         massGrams,

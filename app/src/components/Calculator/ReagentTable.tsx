@@ -59,7 +59,7 @@ export const ReagentTable: React.FC<ReagentTableProps> = ({ reagents, chapter })
                 <span className={`text-[14px] font-semibold ${
                   r.isBaseline ? 'text-blue-300' : 'text-slate-200'
                 }`}>
-                  {r.alias}
+                  {r.realName}
                 </span>
                 {r.isBaseline && (
                   <span className="text-[8px] font-bold text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded tracking-wider">

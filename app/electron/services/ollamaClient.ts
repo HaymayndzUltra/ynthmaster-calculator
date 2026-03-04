@@ -75,6 +75,7 @@ export class OllamaClient {
           temperature: 0.4,
           top_p: 0.9,
           num_ctx: numCtx,
+          num_gpu: -1,
         },
       }),
       signal: combinedSignal,

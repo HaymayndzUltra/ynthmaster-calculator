@@ -103,7 +103,7 @@ export const IngredientChecklist: React.FC<IngredientChecklistProps> = ({ calcul
                     style={{ backgroundColor: isChecked ? 'rgba(63,185,80,0.02)' : 'transparent' }}
                     role="checkbox"
                     aria-checked={isChecked}
-                    aria-label={`${reagent.alias} — ${amount}`}
+                    aria-label={`${reagent.realName} — ${amount}`}
                   >
                     <div className={`w-6 h-6 rounded-md border-2 flex items-center justify-center shrink-0 transition-all duration-200 ${
                       isChecked ? 'bg-emerald-500 border-emerald-500' : 'border-[#1E2530]'
@@ -115,8 +115,8 @@ export const IngredientChecklist: React.FC<IngredientChecklistProps> = ({ calcul
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold text-white truncate">{reagent.alias}</div>
-                      <div className="text-[11px] font-mono" style={{ color: 'var(--text-muted)' }}>MW: {reagent.internalId}</div>
+                      <div className="text-sm font-semibold text-white truncate">{reagent.realName}</div>
+                      <div className="text-[11px] font-mono" style={{ color: 'var(--text-muted)' }}>{reagent.internalId}</div>
                     </div>
                     <div className="text-xl font-bold text-white tabular-nums mono shrink-0">
                       {amount}

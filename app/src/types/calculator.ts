@@ -23,6 +23,7 @@ export const DEFAULT_YIELDS: YieldConfig = {
 
 export interface ScaledReagent {
   internalId: string;       // e.g., 'PAA', 'PBA'
+  realName: string;         // Real chemical name: 'Phenylacetic Acid'
   alias: string;            // OPSEC name: 'Honey Crystals'
   chapter: number;          // Which chapter this reagent belongs to
   massGrams: number | null; // Calculated mass in grams (null for volume-only)

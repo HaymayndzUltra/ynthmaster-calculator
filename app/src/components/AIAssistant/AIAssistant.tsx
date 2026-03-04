@@ -11,9 +11,9 @@ import { ChatInput } from './ChatInput';
 const panelAnimationCSS = `
   .ai-panel-overlay {
     position: fixed;
-    top: 0;
+    top: 32px;
     right: 0;
-    height: 100vh;
+    height: calc(100vh - 32px);
     width: 360px;
     max-width: 100vw;
     z-index: 1000;
@@ -32,9 +32,9 @@ const panelAnimationCSS = `
 
   .ai-toggle-btn {
     position: fixed;
-    top: 12px;
+    top: 44px;
     right: 12px;
-    z-index: 999;
+    z-index: 1001;
     width: 36px;
     height: 36px;
     border-radius: 8px;
@@ -134,6 +134,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
   const {
     messages,
     isStreaming,
+    streamingContent,
     aiStatus,
     sendMessage,
     abortGeneration,
@@ -141,7 +142,6 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
   } = useAIChat();
 
   const messageListRef = useRef<HTMLDivElement>(null);
-  const streamContentRef = useRef('');
 
   // ─── 15.1: Global F12 panic key — OPSEC wipe ─────────────────
   useEffect(() => {
@@ -187,33 +187,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, isStreaming, scrollToBottom]);
-
-  // ─── Track streaming content for live display ─────────────────
-  // We subscribe to onChunk to update a local ref for the streaming bubble
-  const [streamingContent, setStreamingContent] = React.useState('');
-
-  useEffect(() => {
-    const unsubscribe = window.ai.onChunk((event) => {
-      if (event.done) {
-        setStreamingContent('');
-        streamContentRef.current = '';
-      } else {
-        streamContentRef.current += event.token;
-        setStreamingContent(streamContentRef.current);
-      }
-    });
-
-    return unsubscribe;
-  }, []);
-
-  // Reset streaming content when streaming ends (safety net)
-  useEffect(() => {
-    if (!isStreaming) {
-      setStreamingContent('');
-      streamContentRef.current = '';
-    }
-  }, [isStreaming]);
+  }, [messages, isStreaming, streamingContent, scrollToBottom]);
 
   // ─── Handlers ─────────────────────────────────────────────────
   const handleSend = useCallback(
