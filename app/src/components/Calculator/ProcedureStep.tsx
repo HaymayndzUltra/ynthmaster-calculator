@@ -3,6 +3,7 @@ import { Eye, AlertTriangle, Wrench, ShieldAlert, Thermometer, Clock } from 'luc
 import type { ProcedureStep as ProcedureStepType } from '../../types/calculator';
 import { StepImage } from './StepImage';
 import { ProTip } from './ProTip';
+import { ImageLightbox } from './ImageLightbox';
 
 interface ProcedureStepProps {
   step: ProcedureStepType;
@@ -24,6 +25,7 @@ export const ProcedureStepComponent: React.FC<ProcedureStepProps> = ({
   const severity = (step.severity ?? 'info') as keyof typeof SEV;
   const sev = SEV[severity] ?? SEV.info;
   const [note, setNote] = useState('');
+  const [showLightbox, setShowLightbox] = useState(false);
 
   return (
     <div className="flex gap-4">
@@ -79,6 +81,16 @@ export const ProcedureStepComponent: React.FC<ProcedureStepProps> = ({
           <StepImage
             imagePath={step.imagePath}
             caption="What this should look like"
+            onLightboxOpen={() => setShowLightbox(true)}
+          />
+        )}
+
+        {/* Image lightbox overlay */}
+        {showLightbox && step.imagePath && (
+          <ImageLightbox
+            imagePath={`/images/${step.imagePath}`}
+            caption="What this should look like"
+            onClose={() => setShowLightbox(false)}
           />
         )}
 

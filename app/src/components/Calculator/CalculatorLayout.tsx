@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Package, FlaskConical, TestTubes, Flame, Gem, ChevronLeft, ChevronRight, Check, AlertTriangle } from 'lucide-react';
 import type { YieldConfig } from '../../types/calculator';
 import type { UseCalculatorReturn } from '../../types/calculator';
@@ -7,6 +7,10 @@ import { ChapterView } from './ChapterView';
 import { OnboardingScreen } from './OnboardingScreen';
 import { IngredientChecklist } from './IngredientChecklist';
 import { SkipLink } from './SkipLink';
+import { TemperatureMonitor } from './TemperatureMonitor';
+import { ReactionTimer } from './ReactionTimer';
+import { EmergencyStopBar } from './EmergencyStopBar';
+import { EmergencyOverlay } from './EmergencyOverlay';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
@@ -39,8 +43,10 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ calculator }
     screenMode, setScreenMode,
     currentStep, setCurrentStep,
     completedSteps, markStepComplete,
-    timerSeconds,
+    timerSeconds, timerRunning, toggleTimer, resetTimer,
   } = calculator;
+
+  const [showEmergencyOverlay, setShowEmergencyOverlay] = useState(false);
 
   const isReducedMotion = useReducedMotion();
   const mainContentRef = useRef<HTMLDivElement>(null);
@@ -117,6 +123,13 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ calculator }
   // ─── Render: Checklist + Execution screens (with sidebar) ───────────
   const isExecution = screenMode === 'execution';
   const showFloatingWidgets = isExecution && activeChapter >= 2 && activeChapter <= 4;
+  const showEmergencyBar = isExecution && activeChapter >= 2 && activeChapter <= 5;
+
+  // Derive current step temp data for TemperatureMonitor
+  const currentProcedure = procedures[currentStep - 1] ?? null;
+  const currentTempTarget = currentProcedure?.tempTarget ?? null;
+  const currentTempDanger = currentProcedure?.tempDanger ?? null;
+  const currentDurationMax = currentProcedure?.durationMax ?? null;
 
   return (
     <div className="flex h-full" style={{ backgroundColor: 'var(--bg-primary)' }}>
@@ -286,10 +299,38 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ calculator }
               zIndex: 'var(--z-float)',
             }}
           >
-            {/* TemperatureMonitor and ReactionTimer will be rendered here in Phase 4 */}
+            <TemperatureMonitor
+              tempTarget={currentTempTarget}
+              tempDanger={currentTempDanger}
+              activeChapter={activeChapter}
+              screenMode={screenMode}
+            />
+            <ReactionTimer
+              timerSeconds={timerSeconds}
+              timerRunning={timerRunning}
+              onToggle={toggleTimer}
+              onReset={resetTimer}
+              durationMax={currentDurationMax}
+              activeChapter={activeChapter}
+              screenMode={screenMode}
+            />
           </div>
         )}
+
+        {/* ── Emergency Stop Bar (Ch2-5) ── */}
+        {showEmergencyBar && (
+          <EmergencyStopBar onEmergencyClick={() => setShowEmergencyOverlay(true)} />
+        )}
       </div>
+
+      {/* ── Emergency Overlay ── */}
+      {showEmergencyOverlay && (
+        <EmergencyOverlay
+          failureModes={failureModes}
+          activeChapter={activeChapter}
+          onClose={() => setShowEmergencyOverlay(false)}
+        />
+      )}
     </div>
   );
 };
