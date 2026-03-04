@@ -12,7 +12,7 @@ function createWindow(): void {
     width: 1200,
     height: 800,
     webPreferences: {
-      preload: join(__dirname, 'preload.js'),
+      preload: join(__dirname, 'preload.js'), // esbuild outputs preload.js alongside main.js in dist-electron/
       contextIsolation: true,
       nodeIntegration: false,
     },

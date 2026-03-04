@@ -23,7 +23,9 @@ export function registerAIHandlers(
   const modelManager = new ModelManager(ollamaClient);
 
   // Load knowledge files from data/knowledge/ relative to app root
-  const knowledgeDir = join(__dirname, '..', '..', 'data', 'knowledge');
+  // After esbuild bundles to dist-electron/main.js, __dirname = dist-electron/
+  // So ../data/knowledge resolves to app/data/knowledge
+  const knowledgeDir = join(__dirname, '..', 'data', 'knowledge');
   knowledgeBase.loadAll(knowledgeDir);
 
   const contextBuilder = new ContextBuilder(db, opsecMap, knowledgeBase, modelManager);
