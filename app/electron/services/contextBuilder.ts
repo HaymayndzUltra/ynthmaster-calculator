@@ -387,7 +387,7 @@ export class ContextBuilder {
     if (ctx.calculatedReagents && ctx.calculatedReagents.length > 0) {
       parts.push('', 'Calculated Reagents:');
       for (const r of ctx.calculatedReagents) {
-        parts.push(`- ${r.opsecAlias}: ${r.massGrams.toFixed(1)}g (${r.moles.toFixed(3)} mol, ${r.equivalents.toFixed(1)} eq)`);
+        parts.push(`- ${r.chemicalName}: ${r.massGrams.toFixed(1)}g (${r.moles.toFixed(3)} mol, ${r.equivalents.toFixed(1)} eq)`);
       }
     }
 

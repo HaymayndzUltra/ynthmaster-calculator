@@ -18,7 +18,7 @@ export interface CalculatorContext {
 }
 
 export interface ReagentEntry {
-  opsecAlias: string;
+  chemicalName: string;
   massGrams: number;
   moles: number;
   equivalents: number;

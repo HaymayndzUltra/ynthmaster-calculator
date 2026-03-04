@@ -247,7 +247,7 @@ export class ScalingEngine {
     const calculatedReagents: ReagentEntry[] = allReagents
       .filter((r) => r.massGrams != null && r.ratioType !== 'fixed_excess')
       .map((r) => ({
-        opsecAlias: r.alias,
+        chemicalName: r.realName,
         massGrams: r.massGrams!,
         moles: r.moles ?? 0,
         equivalents: r.equivalents ?? 0,

@@ -46,7 +46,7 @@ function formatCalculatorContext(ctx: CalculatorContext | undefined): string {
   if (ctx.calculatedReagents && ctx.calculatedReagents.length > 0) {
     parts.push('', 'Calculated Reagents:');
     for (const r of ctx.calculatedReagents) {
-      parts.push(`- ${r.opsecAlias}: ${r.massGrams.toFixed(1)}g (${r.moles.toFixed(3)} mol, ${r.equivalents.toFixed(1)} eq)`);
+      parts.push(`- ${r.chemicalName}: ${r.massGrams.toFixed(1)}g (${r.moles.toFixed(3)} mol, ${r.equivalents.toFixed(1)} eq)`);
     }
   }
 
@@ -74,20 +74,20 @@ const CHAPTER_4_25G_CONTEXT: CalculatorContext = {
   targetYieldGrams: 25,
   selectedMethod: 'Al/Hg Amalgam',
   calculatedReagents: [
-    { opsecAlias: 'Alpha Base', massGrams: 40.0, moles: 0.298, equivalents: 1.0 },
-    { opsecAlias: 'Blue Activator', massGrams: 40.0, moles: 0.592, equivalents: 2.0 },
-    { opsecAlias: 'Silver Mesh', massGrams: 48.1, moles: 1.783, equivalents: 6.0 },
-    { opsecAlias: 'Activation Salt', massGrams: 0.48, moles: 0.002, equivalents: 0.006 },
-    { opsecAlias: 'Solvent 70', massGrams: 78.5, moles: 1.306, equivalents: 4.4 },
-    { opsecAlias: 'White Flake', massGrams: 20.0, moles: 0.500, equivalents: 1.7 },
+    { chemicalName: 'Phenylacetone', massGrams: 40.0, moles: 0.298, equivalents: 1.0 },
+    { chemicalName: 'Methylamine HCl', massGrams: 40.0, moles: 0.592, equivalents: 2.0 },
+    { chemicalName: 'Aluminum Foil', massGrams: 48.1, moles: 1.783, equivalents: 6.0 },
+    { chemicalName: 'Mercuric Chloride', massGrams: 0.48, moles: 0.002, equivalents: 0.006 },
+    { chemicalName: 'Isopropanol 99%', massGrams: 78.5, moles: 1.306, equivalents: 4.4 },
+    { chemicalName: 'Sodium Hydroxide', massGrams: 20.0, moles: 0.500, equivalents: 1.7 },
   ],
 };
 
 const DEFAULT_TEXTBOOK_AMOUNTS: Record<string, number> = {
-  'Silver Mesh': 50.0,
-  'Activation Salt': 0.5,
-  'Alpha Base': 40.0,
-  'Blue Activator': 40.0,
+  'Aluminum Foil': 50.0,
+  'Mercuric Chloride': 0.5,
+  'Phenylacetone': 40.0,
+  'Methylamine HCl': 40.0,
 };
 
 const CHAPTER_2_NO_YIELD: CalculatorContext = {
@@ -123,22 +123,22 @@ describe('16.5 Context-Aware Quantity Scaling', () => {
       expect(output).toContain('Selected Method: Al/Hg Amalgam');
     });
 
-    it('includes scaled Silver Mesh quantity (48.1g, NOT 50g)', () => {
-      expect(output).toContain('Silver Mesh: 48.1g');
-      expect(output).not.toContain('Silver Mesh: 50.0g');
+    it('includes scaled Aluminum Foil quantity (48.1g, NOT 50g)', () => {
+      expect(output).toContain('Aluminum Foil: 48.1g');
+      expect(output).not.toContain('Aluminum Foil: 50.0g');
     });
 
-    it('includes scaled Activation Salt quantity (0.5g, NOT 0.5g default)', () => {
-      expect(output).toContain('Activation Salt: 0.5g');
+    it('includes scaled Mercuric Chloride quantity (0.5g, NOT 0.5g default)', () => {
+      expect(output).toContain('Mercuric Chloride: 0.5g');
     });
 
     it('includes all 6 calculated reagents', () => {
-      expect(output).toContain('Alpha Base:');
-      expect(output).toContain('Blue Activator:');
-      expect(output).toContain('Silver Mesh:');
-      expect(output).toContain('Activation Salt:');
-      expect(output).toContain('Solvent 70:');
-      expect(output).toContain('White Flake:');
+      expect(output).toContain('Phenylacetone:');
+      expect(output).toContain('Methylamine HCl:');
+      expect(output).toContain('Aluminum Foil:');
+      expect(output).toContain('Mercuric Chloride:');
+      expect(output).toContain('Isopropanol 99%:');
+      expect(output).toContain('Sodium Hydroxide:');
     });
 
     it('includes moles and equivalents for each reagent', () => {
@@ -146,15 +146,15 @@ describe('16.5 Context-Aware Quantity Scaling', () => {
       expect(output).toContain('eq)');
     });
 
-    it('uses OPSEC aliases (not real chemical names)', () => {
-      expect(output).not.toContain('Aluminum');
-      expect(output).not.toContain('Mercuric Chloride');
-      expect(output).not.toContain('Isopropanol');
-      expect(output).not.toContain('Sodium Hydroxide');
-      expect(output).toContain('Silver Mesh');
-      expect(output).toContain('Activation Salt');
-      expect(output).toContain('Solvent 70');
-      expect(output).toContain('White Flake');
+    it('uses real chemical names (not OPSEC aliases)', () => {
+      expect(output).toContain('Aluminum Foil');
+      expect(output).toContain('Mercuric Chloride');
+      expect(output).toContain('Isopropanol 99%');
+      expect(output).toContain('Sodium Hydroxide');
+      expect(output).not.toContain('Silver Mesh');
+      expect(output).not.toContain('Activation Salt');
+      expect(output).not.toContain('Solvent 70');
+      expect(output).not.toContain('White Flake');
     });
   });
 
@@ -162,16 +162,16 @@ describe('16.5 Context-Aware Quantity Scaling', () => {
   describe('Scaled quantities differ from textbook defaults', () => {
     const reagents = CHAPTER_4_25G_CONTEXT.calculatedReagents!;
 
-    it('Silver Mesh: 48.1g (scaled) ≠ 50g (textbook default)', () => {
-      const silverMesh = reagents.find((r) => r.opsecAlias === 'Silver Mesh');
-      expect(silverMesh!.massGrams).toBe(48.1);
-      expect(silverMesh!.massGrams).not.toBe(DEFAULT_TEXTBOOK_AMOUNTS['Silver Mesh']);
+    it('Aluminum Foil: 48.1g (scaled) ≠ 50g (textbook default)', () => {
+      const aluminum = reagents.find((r) => r.chemicalName === 'Aluminum Foil');
+      expect(aluminum!.massGrams).toBe(48.1);
+      expect(aluminum!.massGrams).not.toBe(DEFAULT_TEXTBOOK_AMOUNTS['Aluminum Foil']);
     });
 
-    it('Activation Salt: 0.48g (scaled) ≠ 0.5g (textbook default)', () => {
-      const salt = reagents.find((r) => r.opsecAlias === 'Activation Salt');
-      expect(salt!.massGrams).toBe(0.48);
-      expect(salt!.massGrams).not.toBe(DEFAULT_TEXTBOOK_AMOUNTS['Activation Salt']);
+    it('Mercuric Chloride: 0.48g (scaled) ≠ 0.5g (textbook default)', () => {
+      const hgcl2 = reagents.find((r) => r.chemicalName === 'Mercuric Chloride');
+      expect(hgcl2!.massGrams).toBe(0.48);
+      expect(hgcl2!.massGrams).not.toBe(DEFAULT_TEXTBOOK_AMOUNTS['Mercuric Chloride']);
     });
 
     it('all reagents have positive mass values', () => {
@@ -247,10 +247,10 @@ describe('16.5 Context-Aware Quantity Scaling', () => {
   describe('ReagentEntry type compliance', () => {
     const reagents = CHAPTER_4_25G_CONTEXT.calculatedReagents!;
 
-    it('every reagent has opsecAlias (string)', () => {
+    it('every reagent has chemicalName (string)', () => {
       for (const r of reagents) {
-        expect(typeof r.opsecAlias).toBe('string');
-        expect(r.opsecAlias.length).toBeGreaterThan(0);
+        expect(typeof r.chemicalName).toBe('string');
+        expect(r.chemicalName.length).toBeGreaterThan(0);
       }
     });
 
