@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { AIAssistant } from './components/AIAssistant/AIAssistant';
 import { CalculatorLayout } from './components/Calculator/CalculatorLayout';
+import { AppErrorBoundary } from './components/Calculator/ErrorBoundary';
+import { ToastProvider } from './hooks/useToast';
 import { useCalculator } from './hooks/useCalculator';
 
 const FAKE_DATA = [
@@ -82,6 +84,8 @@ const App: React.FC = () => {
   }
 
   return (
+    <AppErrorBoundary>
+    <ToastProvider>
     <div className="h-screen flex overflow-hidden bg-[#06080C]">
       <div className="flex-1 flex flex-col overflow-hidden">
         <CalculatorLayout calculator={calculator} />
@@ -93,6 +97,8 @@ const App: React.FC = () => {
         calculatorContext={calculator.calculatorContext}
       />
     </div>
+    </ToastProvider>
+    </AppErrorBoundary>
   );
 };
 

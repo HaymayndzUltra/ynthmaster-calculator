@@ -11,6 +11,8 @@ import { TemperatureMonitor } from './TemperatureMonitor';
 import { ReactionTimer } from './ReactionTimer';
 import { EmergencyStopBar } from './EmergencyStopBar';
 import { EmergencyOverlay } from './EmergencyOverlay';
+import { SidebarErrorBoundary, ContentErrorBoundary, WidgetErrorBoundary } from './ErrorBoundary';
+import { Skeleton } from './Skeleton';
 import { useKeyboardShortcuts } from '../../hooks/useKeyboardShortcuts';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 
@@ -136,6 +138,7 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ calculator }
       <SkipLink />
 
       {/* ── Left sidebar: Pipeline Nav ────────────────────── */}
+      <SidebarErrorBoundary>
       <div className="w-[200px] shrink-0 border-r flex flex-col" style={{ borderColor: 'var(--border-default)', backgroundColor: 'var(--bg-deep)' }}>
         {/* Logo area */}
         <div className="px-5 py-5 border-b" style={{ borderColor: 'var(--border-default)' }}>
@@ -197,6 +200,7 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ calculator }
           </div>
         </div>
       </div>
+      </SidebarErrorBoundary>
 
       {/* ── Main content ─────────────────────────────────── */}
       <div className="flex-1 flex flex-col overflow-hidden relative">
@@ -208,6 +212,7 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ calculator }
         )}
 
         {/* Scrollable content */}
+        <ContentErrorBoundary>
         <div id="main-content" ref={mainContentRef} className={`flex-1 overflow-auto ${transitionClass}`}>
           {/* ── Screen: Checklist ── */}
           {screenMode === 'checklist' && (
@@ -235,10 +240,24 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ calculator }
                 </div>
               ))}
 
-              {/* Loading */}
+              {/* Loading skeleton */}
               {isLoading && (
-                <div className="text-center py-16 text-sm" style={{ color: 'var(--text-muted)' }}>
-                  Calculating...
+                <div className="p-6 space-y-4" aria-busy="true">
+                  {/* Stat card skeletons */}
+                  <div className="grid grid-cols-3 gap-2">
+                    <Skeleton variant="rect" height={72} />
+                    <Skeleton variant="rect" height={72} />
+                    <Skeleton variant="rect" height={72} />
+                  </div>
+                  {/* Step badge skeleton */}
+                  <Skeleton variant="rect" width={120} height={20} />
+                  {/* Step text skeletons */}
+                  <Skeleton variant="text" lines={4} lineWidths={['100%', '95%', '80%', '60%']} />
+                  {/* Image placeholder skeleton */}
+                  <Skeleton variant="rect" height={200} />
+                  {/* Info card skeletons */}
+                  <Skeleton variant="rect" height={64} />
+                  <Skeleton variant="rect" height={64} />
                 </div>
               )}
 
@@ -288,6 +307,7 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ calculator }
             </div>
           )}
         </div>
+        </ContentErrorBoundary>
 
         {/* ── Floating widget container (execution mode, Ch2-4) ── */}
         {showFloatingWidgets && (
@@ -299,21 +319,25 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ calculator }
               zIndex: 'var(--z-float)',
             }}
           >
-            <TemperatureMonitor
-              tempTarget={currentTempTarget}
-              tempDanger={currentTempDanger}
-              activeChapter={activeChapter}
-              screenMode={screenMode}
-            />
-            <ReactionTimer
-              timerSeconds={timerSeconds}
-              timerRunning={timerRunning}
-              onToggle={toggleTimer}
-              onReset={resetTimer}
-              durationMax={currentDurationMax}
-              activeChapter={activeChapter}
-              screenMode={screenMode}
-            />
+            <WidgetErrorBoundary>
+              <TemperatureMonitor
+                tempTarget={currentTempTarget}
+                tempDanger={currentTempDanger}
+                activeChapter={activeChapter}
+                screenMode={screenMode}
+              />
+            </WidgetErrorBoundary>
+            <WidgetErrorBoundary>
+              <ReactionTimer
+                timerSeconds={timerSeconds}
+                timerRunning={timerRunning}
+                onToggle={toggleTimer}
+                onReset={resetTimer}
+                durationMax={currentDurationMax}
+                activeChapter={activeChapter}
+                screenMode={screenMode}
+              />
+            </WidgetErrorBoundary>
           </div>
         )}
 
