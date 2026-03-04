@@ -38,6 +38,8 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ calculator }
     isLoading, error,
     screenMode, setScreenMode,
     currentStep, setCurrentStep,
+    completedSteps, markStepComplete,
+    timerSeconds,
   } = calculator;
 
   const isReducedMotion = useReducedMotion();
@@ -237,6 +239,11 @@ export const CalculatorLayout: React.FC<CalculatorLayoutProps> = ({ calculator }
                   yieldValue={yieldValue}
                   yieldKey={yieldKey ?? 'ch2'}
                   onYieldChange={setYield}
+                  currentStep={currentStep}
+                  onStepChange={setCurrentStep}
+                  completedSteps={completedSteps.get(activeChapter) ?? new Set()}
+                  onMarkStepComplete={(stepNum) => markStepComplete(activeChapter, stepNum)}
+                  timerSeconds={timerSeconds}
                 />
               )}
 
