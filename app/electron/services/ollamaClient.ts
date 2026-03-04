@@ -60,6 +60,10 @@ export class OllamaClient {
   ): Promise<void> {
     this.controller = new AbortController();
 
+    // Combine manual abort with 120-second inference timeout (PRD §3.2.1)
+    const timeoutSignal = AbortSignal.timeout(120_000);
+    const combinedSignal = AbortSignal.any([this.controller.signal, timeoutSignal]);
+
     const response = await fetch(`${this.baseUrl}/api/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -73,7 +77,7 @@ export class OllamaClient {
           num_ctx: numCtx,
         },
       }),
-      signal: this.controller.signal,
+      signal: combinedSignal,
     });
 
     if (!response.ok) {

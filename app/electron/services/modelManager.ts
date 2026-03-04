@@ -9,9 +9,9 @@ export class ModelManager {
   private ollamaClient: OllamaClient;
   private preferredModels: string[] = [
     'csog-operator',
-    'dolphin-mixtral',
-    'nous-hermes2-mixtral',
     'dolphin-mistral',
+    'nous-hermes2',
+    'openhermes',
   ];
   private healthInterval: ReturnType<typeof setInterval> | null = null;
   private cachedStatus: AIStatus = {
@@ -127,6 +127,7 @@ export class ModelManager {
     if (!model) return 4096;
     const lower = model.toLowerCase();
     if (lower.includes('mixtral')) return 32768;
+    if (lower.includes('csog-operator')) return 8192;
     if (lower.includes('mistral') && !lower.includes('mixtral')) return 8192;
     return 4096;
   }

@@ -56,3 +56,21 @@ contextBridge.exposeInMainWorld('ai', {
     return () => ipcRenderer.removeListener('ai:error', handler);
   },
 });
+
+// ─── Calculator Bridge ────────────────────────────────────────
+// Exposes window.calc namespace to the renderer process.
+contextBridge.exposeInMainWorld('calc', {
+  calculate: (
+    targetG: number,
+    yields: { ch2: number; ch3: number; ch4: number; ch5: number }
+  ) => ipcRenderer.invoke('calc:calculate', { targetG, yields }),
+
+  getProcessInfo: (chapter: number) =>
+    ipcRenderer.invoke('calc:getProcessInfo', { chapter }),
+
+  getProcedures: (chapter: number) =>
+    ipcRenderer.invoke('calc:getProcedures', { chapter }),
+
+  getFailureModes: (chapter?: number) =>
+    ipcRenderer.invoke('calc:getFailureModes', { chapter }),
+});

@@ -21,12 +21,15 @@ const STATUS_POLL_INTERVAL_MS = 30_000;
 export function useAIChat(): UseAIChatReturn {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isStreaming, setIsStreaming] = useState(false);
+  const [streamingContent, setStreamingContent] = useState('');
   const [aiStatus, setAiStatus] = useState<AIStatus>(DEFAULT_STATUS);
 
-  // Ref to accumulate streaming tokens without triggering re-renders per token
+  // Ref to accumulate streaming tokens (source of truth for content)
   const streamContentRef = useRef('');
   // Ref to track streaming state inside callbacks (avoids stale closure)
   const isStreamingRef = useRef(false);
+  // Throttle timer for rendering streaming content (50ms interval)
+  const renderTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // ─── 9.2: Status polling on mount ───────────────────────────────
   useEffect(() => {
@@ -52,7 +55,7 @@ export function useAIChat(): UseAIChatReturn {
     };
   }, []);
 
-  // ─── 9.4: Streaming chunk subscription ─────────────────────────
+  // ─── 9.4: Streaming chunk subscription + throttled render (50ms) ───
   useEffect(() => {
     const unsubscribe = window.ai.onChunk((event: AIChunkEvent) => {
       if (!isStreamingRef.current) return;
@@ -60,13 +63,18 @@ export function useAIChat(): UseAIChatReturn {
       streamContentRef.current += event.token;
 
       if (event.done) {
+        // Stop throttled rendering
+        if (renderTimerRef.current) {
+          clearInterval(renderTimerRef.current);
+          renderTimerRef.current = null;
+        }
         const finalContent = streamContentRef.current;
+        setStreamingContent('');
         setMessages((prev) => [
           ...prev,
           { role: 'assistant', content: finalContent },
         ]);
         streamContentRef.current = '';
-        isStreamingRef.current = false;
         setIsStreaming(false);
       }
     });
@@ -98,23 +106,41 @@ export function useAIChat(): UseAIChatReturn {
     return unsubscribe;
   }, []);
 
-  // ─── 9.3: sendMessage ──────────────────────────────────────────
+  // ─── 9.3: sendMessage (uses functional setState to avoid stale closure) ─
   const sendMessage = useCallback(
     async (content: string, context?: CalculatorContext): Promise<void> => {
       if (!content.trim()) return;
       if (isStreamingRef.current) return;
 
       const userMessage: ChatMessage = { role: 'user', content };
-      const updatedMessages = [...messages, userMessage];
 
-      setMessages(updatedMessages);
+      // Use functional setState to avoid stale messages closure
+      let messagesSnapshot: ChatMessage[] = [];
+      setMessages((prev) => {
+        messagesSnapshot = [...prev, userMessage];
+        return messagesSnapshot;
+      });
+
       streamContentRef.current = '';
+      setStreamingContent('');
       isStreamingRef.current = true;
       setIsStreaming(true);
 
+      // Start throttled render of streaming content (50ms interval, PRD US-AI-06)
+      renderTimerRef.current = setInterval(() => {
+        if (streamContentRef.current) {
+          setStreamingContent(streamContentRef.current);
+        }
+      }, 50);
+
       try {
-        const result = await window.ai.chat(updatedMessages, context);
+        const result = await window.ai.chat(messagesSnapshot, context);
         if (!result.success && result.error) {
+          if (renderTimerRef.current) {
+            clearInterval(renderTimerRef.current);
+            renderTimerRef.current = null;
+          }
+          setStreamingContent('');
           setMessages((prev) => [
             ...prev,
             { role: 'assistant', content: `Error: ${result.error}` },
@@ -125,6 +151,11 @@ export function useAIChat(): UseAIChatReturn {
         }
       } catch (err) {
         console.error('useAIChat: chat invocation failed:', err);
+        if (renderTimerRef.current) {
+          clearInterval(renderTimerRef.current);
+          renderTimerRef.current = null;
+        }
+        setStreamingContent('');
         setMessages((prev) => [
           ...prev,
           {
@@ -137,7 +168,7 @@ export function useAIChat(): UseAIChatReturn {
         setIsStreaming(false);
       }
     },
-    [messages],
+    [],
   );
 
   // ─── 9.6: abortGeneration ─────────────────────────────────────
@@ -183,6 +214,7 @@ export function useAIChat(): UseAIChatReturn {
   return {
     messages,
     isStreaming,
+    streamingContent,
     aiStatus,
     sendMessage,
     abortGeneration,

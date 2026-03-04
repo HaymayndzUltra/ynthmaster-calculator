@@ -59,6 +59,7 @@ export interface OpsecEntry {
   alias: string;
   chemical: string;
   mw: number;
+  density?: number;
   used_in: string;
 }
 
@@ -67,6 +68,7 @@ export interface OpsecEntry {
 export interface UseAIChatReturn {
   messages: ChatMessage[];
   isStreaming: boolean;
+  streamingContent: string;
   aiStatus: AIStatus;
   sendMessage: (content: string, context?: CalculatorContext) => void;
   abortGeneration: () => void;

@@ -242,9 +242,10 @@ describe('16.8 Selective Injection Fallback', () => {
     it('selective mode defaults to chapter 1 when no context provided', () => {
       // contextBuilder.ts buildSelectivePrompt line 223:
       // const chapter = calculatorContext?.activeChapter ?? 1;
-      const ctx: { activeChapter: number } | undefined = undefined;
-      const chapter = ctx?.activeChapter ?? 1;
-      expect(chapter).toBe(1);
+      const getChapter = (ctx?: { activeChapter: number }): number =>
+        ctx?.activeChapter ?? 1;
+      expect(getChapter(undefined)).toBe(1);
+      expect(getChapter({ activeChapter: 3 })).toBe(3);
     });
   });
 });

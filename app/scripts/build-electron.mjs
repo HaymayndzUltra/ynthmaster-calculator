@@ -6,7 +6,7 @@ await build({
   platform: 'node',
   target: 'node20',
   outdir: 'dist-electron',
-  external: ['electron'],
+  external: ['electron', 'sql.js'],
   format: 'cjs',
   sourcemap: true,
 });

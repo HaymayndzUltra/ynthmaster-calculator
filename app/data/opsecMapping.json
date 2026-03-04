@@ -1,19 +1,21 @@
 {
-  "version": "1.0",
-  "description": "OPSEC chemical alias mappings — maps real chemical names to operational aliases for use in AI system prompts and UI display.",
+  "version": "1.1",
+  "description": "OPSEC chemical alias mappings — maps real chemical names to operational aliases for use in AI system prompts and UI display. All MW values from PubChem. Lead Acetate = Trihydrate form (what you actually buy).",
   "mappings": [
     {
       "internal_id": "PAA",
       "alias": "Honey Crystals",
       "chemical": "Phenylacetic Acid",
       "mw": 136.15,
+      "density": 1.09,
       "used_in": "ch02"
     },
     {
       "internal_id": "PBA",
       "alias": "Sugar Lead",
-      "chemical": "Lead Acetate",
-      "mw": 325.29,
+      "chemical": "Lead Acetate Trihydrate",
+      "mw": 379.33,
+      "density": 2.55,
       "used_in": "ch02"
     },
     {
@@ -21,6 +23,7 @@
       "alias": "Camp Fuel",
       "chemical": "Hexamine",
       "mw": 140.19,
+      "density": 1.33,
       "used_in": "ch03"
     },
     {
@@ -28,6 +31,7 @@
       "alias": "Pool Acid",
       "chemical": "Muriatic Acid 32%",
       "mw": 36.46,
+      "density": 1.16,
       "used_in": "ch03"
     },
     {
@@ -35,6 +39,7 @@
       "alias": "Alpha Base",
       "chemical": "P2P / Phenylacetone",
       "mw": 134.18,
+      "density": 1.006,
       "used_in": "ch04"
     },
     {
@@ -42,6 +47,7 @@
       "alias": "Blue Activator",
       "chemical": "Methylamine HCl",
       "mw": 67.52,
+      "density": 1.47,
       "used_in": "ch04"
     },
     {
@@ -49,6 +55,7 @@
       "alias": "Silver Mesh",
       "chemical": "Aluminum Foil",
       "mw": 26.98,
+      "density": 2.70,
       "used_in": "ch04"
     },
     {
@@ -56,13 +63,15 @@
       "alias": "Activation Salt",
       "chemical": "Mercuric Chloride",
       "mw": 271.52,
+      "density": 5.43,
       "used_in": "ch04"
     },
     {
       "internal_id": "IPA",
       "alias": "Solvent 70",
-      "chemical": "Isopropanol",
+      "chemical": "Isopropanol 99%",
       "mw": 60.10,
+      "density": 0.786,
       "used_in": "ch04"
     },
     {
@@ -70,6 +79,7 @@
       "alias": "White Flake",
       "chemical": "Sodium Hydroxide",
       "mw": 40.00,
+      "density": 2.13,
       "used_in": "ch04"
     },
     {
@@ -77,6 +87,7 @@
       "alias": "Thinner X",
       "chemical": "Toluene",
       "mw": 92.14,
+      "density": 0.867,
       "used_in": "ch05"
     },
     {
@@ -84,6 +95,7 @@
       "alias": "Table White",
       "chemical": "Sodium Chloride",
       "mw": 58.44,
+      "density": 2.16,
       "used_in": "ch05"
     },
     {
@@ -91,6 +103,7 @@
       "alias": "Battery Juice",
       "chemical": "Sulfuric Acid 98%",
       "mw": 98.08,
+      "density": 1.84,
       "used_in": "ch05"
     },
     {
@@ -98,7 +111,24 @@
       "alias": "Nail Clear",
       "chemical": "Acetone",
       "mw": 58.08,
+      "density": 0.784,
       "used_in": "ch05"
+    },
+    {
+      "internal_id": "MGSO4",
+      "alias": "Dry Salt",
+      "chemical": "Magnesium Sulfate (anhydrous)",
+      "mw": 120.37,
+      "density": 2.66,
+      "used_in": "ch05"
+    },
+    {
+      "internal_id": "H2O",
+      "alias": "Clean Water",
+      "chemical": "Distilled Water",
+      "mw": 18.02,
+      "density": 1.00,
+      "used_in": "ch04"
     }
   ]
 }

@@ -2,11 +2,16 @@
  * 16.2 — OPSEC Alias Compliance Test
  *
  * Validates:
- *   - All 14 OPSEC mappings are defined in opsecMapping.json
+ *   - All 16 OPSEC mappings are defined in opsecMapping.json
  *   - ContextBuilder formatOpsecTable() produces correct MANDATORY instruction
  *   - System prompt contains alias enforcement directive
  *   - Knowledge base files do NOT contain real chemical names (leakage check)
  *   - Edge case: real chemical names must not appear in response format instructions
+ *
+ * NOTE: opsecMapping.json was updated (audit fix) to 16 entries:
+ *   - Lead Acetate → Lead Acetate Trihydrate (Trihydrate MW 379.33 is what you buy)
+ *   - Isopropanol → Isopropanol 99% (99% grade required; 70% has too much water)
+ *   - Added MGSO4 (Dry Salt) and H2O (Clean Water) for completeness
  */
 import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync } from 'fs';
@@ -27,24 +32,26 @@ try {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// Expected 14 aliases from PRD §3.5
+// Expected 16 aliases from opsecMapping.json (v1.1, post-audit)
 // ═══════════════════════════════════════════════════════════════
 
 const EXPECTED_ALIASES: Array<{ chemical: string; alias: string }> = [
   { chemical: 'Phenylacetic Acid', alias: 'Honey Crystals' },
-  { chemical: 'Lead Acetate', alias: 'Sugar Lead' },
+  { chemical: 'Lead Acetate Trihydrate', alias: 'Sugar Lead' },     // Trihydrate MW 379.33
   { chemical: 'Hexamine', alias: 'Camp Fuel' },
   { chemical: 'Muriatic Acid 32%', alias: 'Pool Acid' },
   { chemical: 'P2P / Phenylacetone', alias: 'Alpha Base' },
   { chemical: 'Methylamine HCl', alias: 'Blue Activator' },
   { chemical: 'Aluminum Foil', alias: 'Silver Mesh' },
   { chemical: 'Mercuric Chloride', alias: 'Activation Salt' },
-  { chemical: 'Isopropanol', alias: 'Solvent 70' },
+  { chemical: 'Isopropanol 99%', alias: 'Solvent 70' },             // 99% grade required
   { chemical: 'Sodium Hydroxide', alias: 'White Flake' },
   { chemical: 'Toluene', alias: 'Thinner X' },
   { chemical: 'Sodium Chloride', alias: 'Table White' },
   { chemical: 'Sulfuric Acid 98%', alias: 'Battery Juice' },
   { chemical: 'Acetone', alias: 'Nail Clear' },
+  { chemical: 'Magnesium Sulfate (anhydrous)', alias: 'Dry Salt' }, // Added: drying agent
+  { chemical: 'Distilled Water', alias: 'Clean Water' },            // Added: must be distilled
 ];
 
 // Real chemical names that should NEVER appear in AI responses (used for leakage check)
@@ -97,13 +104,13 @@ describe('16.2 OPSEC Alias Compliance', () => {
       expect(Array.isArray(opsecMap.mappings)).toBe(true);
     });
 
-    it('contains exactly 14 mappings', () => {
-      expect(opsecMap.mappings).toHaveLength(14);
+    it('contains exactly 16 mappings', () => {
+      expect(opsecMap.mappings).toHaveLength(16);
     });
   });
 
-  // ─── All 14 aliases present and correct ─────────────────────
-  describe('All 14 OPSEC aliases are correct', () => {
+  // ─── All 16 aliases present and correct ─────────────────────
+  describe('All 16 OPSEC aliases are correct', () => {
     for (const expected of EXPECTED_ALIASES) {
       it(`${expected.chemical} → ${expected.alias}`, () => {
         const entry = opsecMap.mappings.find((m) => m.alias === expected.alias);
@@ -162,7 +169,7 @@ describe('16.2 OPSEC Alias Compliance', () => {
       expect(table).toContain('Never use real chemical names');
     });
 
-    it('contains all 14 alias mappings', () => {
+    it('contains all 16 alias mappings', () => {
       for (const expected of EXPECTED_ALIASES) {
         expect(table).toContain(`${expected.chemical} → ${expected.alias}`);
       }
