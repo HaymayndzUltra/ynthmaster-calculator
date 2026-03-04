@@ -1,0 +1,25 @@
+| Process | Reagent | Molar Ratio | Density (g/mL) | MW (g/mol) | Temp Range (°C) | Notes |
+|---------|---------|-------------|----------------|------------|-----------------|-------|
+| P2P Synthesis (Dry Distillation) | Phenylacetic Acid | 1.0 | 1.08 | 136.16 | 200-300 | Must be bone-dry powder |
+| P2P Synthesis (Dry Distillation) | Lead Acetate Trihydrate | 2.39 | - | 379.33 | 200-300 | 325g per 136g PAA |
+| P2P Synthesis (Dry Distillation) | NaOH (10% wash) | - | 1.11 | 40.00 | ambient | Purification wash |
+| Methylamine Generation (Hexamine) | Hexamine | 1.0 | - | 140.19 | 80-90 | Crush Esbit tablets |
+| Methylamine Generation (Hexamine) | HCl (32%) | 3.7 (vol) | 1.16 | 36.46 | 80-90 | 300mL per 100g Hex |
+| P2P Reductive Amination | P2P | 1.0 | 1.01 | 134.18 | 40-55 | Yellow/orange oil |
+| P2P Reductive Amination | Methylamine HCl | 2.0 | - | 67.52 | 40-55 | Dissolve in 50mL warm water |
+| P2P Reductive Amination | Aluminum Foil | 6.2 (eq) | 2.70 | 26.98 | 40-55 | 50g per 40g P2P, 1x1cm squares |
+| P2P Reductive Amination | Mercuric Chloride | 0.006 | - | 271.52 | ambient | 0.5g per 40g P2P, catalytic |
+| P2P Reductive Amination | IPA | 2.5 (vol) | 0.785 | 60.10 | 40-55 | 100mL per 40g P2P |
+| P2P Reductive Amination | NaOH (25%) | - | 1.27 | 40.00 | ambient | Drip to free MeAm from HCl |
+| Nagai Method | Pseudoephedrine | 1.0 | - | 165.23 | 100-120 | Extracted from tablets |
+| Nagai Method | Red Phosphorus | 1.0 | - | 30.97 | 100-120 | Regenerates HI |
+| Nagai Method | Iodine | 1.2 | - | 253.81 | 100-120 | Purple vapor disappears when done |
+| Workup (Extraction) | Toluene | 2.5 (vol) | 0.867 | 92.14 | ambient | 100mL per 40g batch |
+| Workup (Extraction) | NaOH (50%) | - | 1.52 | 40.00 | ambient | Basify to pH 14 |
+| Workup (Extraction) | MgSO4 (anhydrous) | - | 2.66 | 120.37 | ambient | Drying agent |
+| HCl Gassing | Freebase | 1.0 | - | 149.23 | ambient | Dissolved in toluene |
+| HCl Gassing | Acetone | 10.0 (vol) | 0.784 | 58.08 | ambient | Cold wash solvent |
+| HCl Gassing | NaCl | 2.0 | - | 58.44 | ambient | Table salt, excess |
+| HCl Gassing | H2SO4 (98%) | 1.5 | 1.84 | 98.08 | ambient | Drip onto NaCl slowly |
+| Recrystallization | IPA or Ethanol | - | 0.785 | 60.10 | boiling→cold | Minimum to dissolve |
+| Recrystallization | Acetone (cold wash) | - | 0.784 | 58.08 | 0-5 | Ice-cold, removes yellow |
