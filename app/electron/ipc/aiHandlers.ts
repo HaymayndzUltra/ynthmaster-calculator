@@ -29,8 +29,8 @@ export function registerAIHandlers(
   const contextBuilder = new ContextBuilder(db, opsecMap, knowledgeBase, modelManager);
 
   // Initialize model manager (async, non-blocking)
-  modelManager.initialize().catch(() => {
-    // Ollama may not be running — degrade gracefully
+  modelManager.initialize().catch((err) => {
+    console.warn('[aiHandlers] Initial model manager setup failed (Ollama may not be running):', (err as Error).message ?? err);
   });
 
   // ─── ai:chat ───────────────────────────────────────────────

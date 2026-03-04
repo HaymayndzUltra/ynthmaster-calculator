@@ -24,7 +24,8 @@ export class OllamaClient {
       if (!response.ok) return { ok: false };
       const data = await response.json();
       return { ok: true, version: data.version };
-    } catch {
+    } catch (err) {
+      console.warn('[OllamaClient] healthCheck failed:', (err as Error).message ?? err);
       return { ok: false };
     }
   }
@@ -41,7 +42,8 @@ export class OllamaClient {
       if (!response.ok) return [];
       const data = await response.json();
       return (data.models ?? []).map((m: { name: string }) => m.name);
-    } catch {
+    } catch (err) {
+      console.warn('[OllamaClient] listModels failed:', (err as Error).message ?? err);
       return [];
     }
   }
@@ -108,8 +110,8 @@ export class OllamaClient {
             const done = parsed.done === true;
             onChunk(token, done);
             if (done) return;
-          } catch {
-            // Skip malformed JSON lines
+          } catch (parseErr) {
+            console.warn('[OllamaClient] Skipping malformed NDJSON line:', trimmed.slice(0, 80));
           }
         }
       }
@@ -121,8 +123,8 @@ export class OllamaClient {
           const token = parsed.message?.content ?? '';
           const done = parsed.done === true;
           onChunk(token, done);
-        } catch {
-          // Skip malformed trailing data
+        } catch (parseErr) {
+          console.warn('[OllamaClient] Skipping malformed trailing buffer data');
         }
       }
     } finally {

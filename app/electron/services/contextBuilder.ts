@@ -91,8 +91,8 @@ export class KnowledgeBase {
         const content = readFileSync(join(knowledgeDir, file), 'utf-8');
         this.chapters.set(file, content);
       }
-    } catch {
-      // Knowledge dir missing — degrade gracefully (AI works without knowledge, just less informed)
+    } catch (err) {
+      console.warn('[KnowledgeBase] Failed to load knowledge dir:', (err as Error).message ?? err);
     }
   }
 
@@ -251,7 +251,8 @@ export class ContextBuilder {
       return this.db.all<ReagentRow>(
         'SELECT internal_id, name, molecular_weight, density, notes FROM reagents ORDER BY internal_id'
       );
-    } catch {
+    } catch (err) {
+      console.warn('[ContextBuilder] getReagentData query failed:', (err as Error).message ?? err);
       return [];
     }
   }
@@ -262,7 +263,8 @@ export class ContextBuilder {
         'SELECT name, chapter, description, temp_min, temp_max, yield_min, yield_max, yield_default FROM processes WHERE chapter = ?',
         chapter
       );
-    } catch {
+    } catch (err) {
+      console.warn('[ContextBuilder] getProcessData query failed:', (err as Error).message ?? err);
       return [];
     }
   }
@@ -278,11 +280,13 @@ export class ContextBuilder {
          WHERE p.chapter = ?`,
         chapter
       );
-    } catch {
+    } catch (err) {
+      console.warn('[ContextBuilder] getProcessReagentData query failed:', (err as Error).message ?? err);
       return [];
     }
   }
 
+  // TODO: Wire getProcedureSteps() into buildFullKnowledgePrompt() once `procedures` table is seeded (parent PRD Task 5.2)
   private getProcedureSteps(processName: string): ProcedureStepRow[] {
     try {
       return this.db.all<ProcedureStepRow>(
@@ -293,7 +297,8 @@ export class ContextBuilder {
          ORDER BY step_number`,
         processName
       );
-    } catch {
+    } catch (err) {
+      console.warn('[ContextBuilder] getProcedureSteps query failed:', (err as Error).message ?? err);
       return [];
     }
   }
