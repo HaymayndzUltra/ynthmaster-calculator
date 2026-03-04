@@ -111,6 +111,10 @@ export interface FailureMode {
   severity: 'info' | 'warning' | 'critical' | 'emergency';
 }
 
+// --- Screen Mode ---
+
+export type ScreenMode = 'onboarding' | 'checklist' | 'execution';
+
 // --- Calculator UI State ---
 
 export interface CalculatorState {
@@ -142,4 +146,16 @@ export interface UseCalculatorReturn {
   isLoading: boolean;
   error: string | null;
   calculatorContext: CalculatorContext | undefined;
+  screenMode: ScreenMode;
+  setScreenMode: (mode: ScreenMode) => void;
+  currentStep: number;
+  setCurrentStep: (step: number) => void;
+  checkedReagents: Set<string>;
+  toggleReagentCheck: (internalId: string) => void;
+  timerSeconds: number;
+  timerRunning: boolean;
+  toggleTimer: () => void;
+  resetTimer: () => void;
+  completedSteps: Map<number, Set<number>>;
+  markStepComplete: (chapter: number, stepNumber: number) => void;
 }

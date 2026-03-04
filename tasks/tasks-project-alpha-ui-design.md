@@ -117,14 +117,14 @@ No dependencies — all tasks in this phase can be executed in parallel.
 > **Recommended Model:** `Architect (Claude Opus 4.5)`
 > **Rules to apply:** `[4-code-modification-safety-protocol]`, `[3-code-quality-checklist]`
 
-- [ ] 4.1 **Type Expansion — `ScreenMode`:** Add `ScreenMode = 'onboarding' | 'checklist' | 'execution'` type to `src/types/calculator.ts`. [APPLIES RULES: `3-code-quality-checklist`]
-- [ ] 4.2 **Type Expansion — `UseCalculatorReturn`:** Add new fields to `UseCalculatorReturn` interface: `screenMode`, `setScreenMode`, `currentStep`, `setCurrentStep`, `checkedReagents` (Set<string>), `toggleReagentCheck`, `timerSeconds`, `timerRunning`, `toggleTimer`, `resetTimer`, `completedSteps` (Map<number, Set<number>>), `markStepComplete`. [APPLIES RULES: `3-code-quality-checklist`]
-- [ ] 4.3 **Hook Implementation — Screen Mode:** Add `screenMode` state to `useCalculator.ts`. Default: `'onboarding'`. Transitions: onboarding → checklist → execution. [APPLIES RULES: `4-code-modification-safety-protocol`]
-- [ ] 4.4 **Hook Implementation — Step Navigation:** Add `currentStep` state (1-indexed per chapter). Reset to 1 on chapter change. Add `setCurrentStep` with bounds checking (1 to `procedures.length`). [APPLIES RULES: `4-code-modification-safety-protocol`]
-- [ ] 4.5 **Hook Implementation — Reagent Checklist:** Add `checkedReagents: Set<string>` state. `toggleReagentCheck(internalId)` adds/removes. Not persisted to disk (OPSEC). [APPLIES RULES: `4-code-modification-safety-protocol`]
-- [ ] 4.6 **Hook Implementation — Reaction Timer:** Add `timerSeconds` (number), `timerRunning` (boolean). Auto-start when entering a chapter's first step. `toggleTimer()` pauses/resumes. `resetTimer()` resets to 0. Uses `setInterval(1000)` with cleanup. [APPLIES RULES: `4-code-modification-safety-protocol`]
-- [ ] 4.7 **Hook Implementation — Step Completion Tracking:** Add `completedSteps: Map<number, Set<number>>` tracking completed steps per chapter. `markStepComplete(chapter, stepNumber)` adds to set. Ephemeral (not persisted). [APPLIES RULES: `4-code-modification-safety-protocol`]
-- [ ] 4.8 **Backward Compatibility Check:** Verify all existing `UseCalculatorReturn` consumers (`CalculatorLayout`, `App.tsx`) still compile. Existing fields unchanged. [APPLIES RULES: `4-code-modification-safety-protocol`]
+- [x] 4.1 **Type Expansion — `ScreenMode`:** Add `ScreenMode = 'onboarding' | 'checklist' | 'execution'` type to `src/types/calculator.ts`. [APPLIES RULES: `3-code-quality-checklist`]
+- [x] 4.2 **Type Expansion — `UseCalculatorReturn`:** Add new fields to `UseCalculatorReturn` interface: `screenMode`, `setScreenMode`, `currentStep`, `setCurrentStep`, `checkedReagents` (Set<string>), `toggleReagentCheck`, `timerSeconds`, `timerRunning`, `toggleTimer`, `resetTimer`, `completedSteps` (Map<number, Set<number>>), `markStepComplete`. [APPLIES RULES: `3-code-quality-checklist`]
+- [x] 4.3 **Hook Implementation — Screen Mode:** Add `screenMode` state to `useCalculator.ts`. Default: `'onboarding'`. Transitions: onboarding → checklist → execution. [APPLIES RULES: `4-code-modification-safety-protocol`]
+- [x] 4.4 **Hook Implementation — Step Navigation:** Add `currentStep` state (1-indexed per chapter). Reset to 1 on chapter change. Add `setCurrentStep` with bounds checking (1 to `procedures.length`). [APPLIES RULES: `4-code-modification-safety-protocol`]
+- [x] 4.5 **Hook Implementation — Reagent Checklist:** Add `checkedReagents: Set<string>` state. `toggleReagentCheck(internalId)` adds/removes. Not persisted to disk (OPSEC). [APPLIES RULES: `4-code-modification-safety-protocol`]
+- [x] 4.6 **Hook Implementation — Reaction Timer:** Add `timerSeconds` (number), `timerRunning` (boolean). Auto-start when entering a chapter's first step. `toggleTimer()` pauses/resumes. `resetTimer()` resets to 0. Uses `setInterval(1000)` with cleanup. [APPLIES RULES: `4-code-modification-safety-protocol`]
+- [x] 4.7 **Hook Implementation — Step Completion Tracking:** Add `completedSteps: Map<number, Set<number>>` tracking completed steps per chapter. `markStepComplete(chapter, stepNumber)` adds to set. Ephemeral (not persisted). [APPLIES RULES: `4-code-modification-safety-protocol`]
+- [x] 4.8 **Backward Compatibility Check:** Verify all existing `UseCalculatorReturn` consumers (`CalculatorLayout`, `App.tsx`) still compile. Existing fields unchanged. [APPLIES RULES: `4-code-modification-safety-protocol`]
 
 ---
 
@@ -134,12 +134,12 @@ No dependencies — all tasks in this phase can be executed in parallel.
 > **Recommended Model:** `Architect (Claude Opus 4.5)`
 > **Rules to apply:** `[4-code-modification-safety-protocol]`, `[common-rule-ui-interaction-a11y-perf]`
 
-- [ ] 5.1 **Screen Router Logic:** Replace single `ChapterView` render in `CalculatorLayout.tsx` with conditional rendering based on `screenMode`: `'onboarding'` → `OnboardingScreen`, `'checklist'` → `IngredientChecklist`, `'execution'` → existing `ChapterView` (enhanced). [APPLIES RULES: `4-code-modification-safety-protocol`]
-- [ ] 5.2 **Skip Link Integration:** Add `SkipLink` component as first child of the layout DOM. Target: `#main-content` on the scrollable content area. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
-- [ ] 5.3 **Keyboard Shortcut Integration:** Integrate `useKeyboardShortcuts` hook. Register global shortcuts (F12 already handled in App.tsx — no duplication). Register screen-specific shortcuts per PRD §9 matrix. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
-- [ ] 5.4 **Floating Widget Container:** Add a fixed-position container (`right: 24px`, `top: 80px`, `z-float`) that renders `TemperatureMonitor` and `ReactionTimer` when `screenMode === 'execution'` and `activeChapter` is 2-4. [APPLIES RULES: `4-code-modification-safety-protocol`]
-- [ ] 5.5 **Screen Transition Choreography:** Implement screen transition animations from PRD §3.7.3 (Screen 1→2, Screen 2→3). Respect `useReducedMotion`. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
-- [ ] 5.6 **Focus Management on Screen Change:** On screen transition, move focus to first heading (`h2`) of new screen. On overlay open, trap focus. On overlay close, restore focus to trigger. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
+- [x] 5.1 **Screen Router Logic:** Replace single `ChapterView` render in `CalculatorLayout.tsx` with conditional rendering based on `screenMode`: `'onboarding'` → `OnboardingScreen`, `'checklist'` → `IngredientChecklist`, `'execution'` → existing `ChapterView` (enhanced). [APPLIES RULES: `4-code-modification-safety-protocol`]
+- [x] 5.2 **Skip Link Integration:** Add `SkipLink` component as first child of the layout DOM. Target: `#main-content` on the scrollable content area. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
+- [x] 5.3 **Keyboard Shortcut Integration:** Integrate `useKeyboardShortcuts` hook. Register global shortcuts (F12 already handled in App.tsx — no duplication). Register screen-specific shortcuts per PRD §9 matrix. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
+- [x] 5.4 **Floating Widget Container:** Add a fixed-position container (`right: 24px`, `top: 80px`, `z-float`) that renders `TemperatureMonitor` and `ReactionTimer` when `screenMode === 'execution'` and `activeChapter` is 2-4. [APPLIES RULES: `4-code-modification-safety-protocol`]
+- [x] 5.5 **Screen Transition Choreography:** Implement screen transition animations from PRD §3.7.3 (Screen 1→2, Screen 2→3). Respect `useReducedMotion`. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
+- [x] 5.6 **Focus Management on Screen Change:** On screen transition, move focus to first heading (`h2`) of new screen. On overlay open, trap focus. On overlay close, restore focus to trigger. [APPLIES RULES: `common-rule-ui-interaction-a11y-perf`]
 
 ---
 
