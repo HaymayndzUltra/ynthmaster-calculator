@@ -148,6 +148,10 @@ INSERT INTO process_reagents (process_id, reagent_id, mass_ratio, volume_ratio, 
 -- TABLE: procedures
 -- Step-by-step with visual cues and failure modes
 -- Source: CSOG Manual Chapters 2-5
+-- 
+-- IMPORTANT: All procedure instructions use ACTUAL CHEMICAL NAMES,
+-- NOT OPSEC aliases. This ensures clarity and accuracy in the UI.
+-- Aliases are stored in the reagents table for reference only.
 -- ============================================================
 
 CREATE TABLE IF NOT EXISTS procedures (
@@ -253,7 +257,7 @@ INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failur
     'PURIFICATION: Pour crude oil into separatory funnel. Wash with 10% NaOH solution (10g Sodium Hydroxide in 100mL water). Shake 2 min. Drain bottom (waste). Keep top (oil).',
     'Oil floats on top (clear yellow). Dirty water sinks (bottom).',
     'Emulsion forms — layers won''t separate.',
-    'Add more NaOH. Let settle longer. Add pinch of Sodium Chloride to break emulsion.',
+    'Add more Sodium Hydroxide. Let settle longer. Add pinch of Sodium Chloride to break emulsion.',
     NULL, NULL, NULL, NULL, NULL, 'info',
     NULL, NULL),
 
@@ -319,8 +323,8 @@ INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failur
     NULL, 'procedures/ch3/step5-crystals.webp'),
 
   ((SELECT id FROM processes WHERE name='methylamine_hexamine'), 8,
-    'VERIFICATION: Melt test — Methylamine HCl melts at 225-230°C. Ammonium Chloride sublimes at 338°C (just smokes). Smell test — pinch + NaOH drop: fishy = good, urine = bad.',
-    'Crystals melt cleanly at 225-230°C. Fishy smell with NaOH.',
+    'VERIFICATION: Melt test — Methylamine HCl melts at 225-230°C. Ammonium Chloride sublimes at 338°C (just smokes). Smell test — pinch + Sodium Hydroxide drop: fishy = good, urine = bad.',
+    'Crystals melt cleanly at 225-230°C. Fishy smell with Sodium Hydroxide.',
     'Yellow crystals.',
     'Formaldehyde impurity. Wash with cold Acetone to whiten.',
     NULL, NULL, NULL, NULL, NULL, 'info',
@@ -401,7 +405,7 @@ INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failur
 
   ((SELECT id FROM processes WHERE name='workup_crystallization'), 3,
     'DRYING: Add ~20g baked Magnesium Sulfate (anhydrous) to Toluene/product mix. Let sit 10 min. Filter through coffee filter into clean dry beaker.',
-    'MgSO4 clumps as it absorbs water. Clear Toluene passes through filter.',
+    'Magnesium Sulfate clumps as it absorbs water. Clear Toluene passes through filter.',
     NULL, NULL, NULL, NULL, NULL, 10, 15, 'info',
     NULL, 'procedures/ch5/step2-drying.webp'),
 
@@ -425,7 +429,7 @@ INSERT INTO procedures (process_id, step_number, instruction, visual_cue, failur
     'RECRYSTALLIZATION: Dissolve raw powder in minimum boiling hot Isopropanol 99%. Add few drops Acetone. Cover. Cool SLOWLY to room temp, then refrigerate. DO NOT TOUCH for 12+ hours.',
     'Long, clear, needle-like shards growing over hours. Slow cooling = big crystals.',
     'Powder formed instead of shards.',
-    'Cooled too fast. Redissolve in hot IPA. Cool MORE SLOWLY this time. Minimum 12 hours.',
+    'Cooled too fast. Redissolve in hot Isopropanol 99%. Cool MORE SLOWLY this time. Minimum 12 hours.',
     NULL, NULL, NULL, 720, 1440, 'info',
     'Patience is purity. 12+ hours of slow cooling = large, clean crystals. Fast cooling = powder.', 'procedures/ch5/step4-recrystallization.webp'),
 

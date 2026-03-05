@@ -1,6 +1,6 @@
-﻿---
-alwaysApply: true
+---
 description: "TAGS: [changelog,documentation,tracking] | TRIGGERS: any | SCOPE: global | DESCRIPTION: Change documentation protocol for CSOG workspace"
+alwaysApply: false
 ---
 <rule>
 
@@ -54,10 +54,10 @@ Required format:
 **[STRICT]** Before ending session:
 
 ```
-â–¡ Did I modify files? â†’ Update CHANGELOG.md
-â–¡ Critical files modified? â†’ Include full documentation
-â–¡ New files created? â†’ Document in CHANGELOG.md
-â–¡ Structure changed? â†’ Update README.md
+□ Did I modify files? → Update CHANGELOG.md
+□ Critical files modified? → Include full documentation
+□ New files created? → Document in CHANGELOG.md
+□ Structure changed? → Update README.md
 ```
 
 ---
@@ -75,7 +75,7 @@ Required format:
 |------|-------------|-------------|
 | `path` | Modified/Created | Brief description |
 
-### Status: âœ… EXECUTED
+### Status: ✅ EXECUTED
 ```
 
 ---

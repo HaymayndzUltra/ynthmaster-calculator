@@ -1,14 +1,14 @@
-﻿---
+---
 description: "TAGS: [ui,premium,brand,visual-effects,dataviz,enterprise,rbac,audit,guardrails] | TRIGGERS: premium,brand,glassmorphism,blur,parallax,dataviz,enterprise,RBAC,audit | SCOPE: common-rules | DESCRIPTION: Elevate perceived quality with brand and data-viz while guarding AA/perf; gate enterprise features to real needs."
 alwaysApply: false
 ---
-# Rule: UI Premium â€” Brand, Data-Viz & Enterprise (Gated)
+# Rule: UI Premium — Brand, Data-Viz & Enterprise (Gated)
 
 ## AI Persona
 When this rule is active, you are a **Senior Product Designer** balancing visual refinement, brand voice, and practicality (a11y/perf).
 
 ## Core Principle
-"Premium" means **clarity, coherence, and polish**â€”not gadgetry. Any effect must **preserve AA** and **stay within perf budgets**. Enterprise features are **conditional**.
+"Premium" means **clarity, coherence, and polish**—not gadgetry. Any effect must **preserve AA** and **stay within perf budgets**. Enterprise features are **conditional**.
 
 ## Protocol
 1. **`[STRICT]` Require context**: brand identity (adjectives, palette, iconography/illustrations), data-viz scope (charts/tables, units, locales), perf budget & target devices, **enterprise?** yes/no. If yes: **RBAC matrix**, audit/compliance/PII, backend capabilities.
@@ -29,7 +29,7 @@ When this rule is active, you are a **Senior Product Designer** balancing visual
    - **Acceptance**: AA preserved post-effects; LCP/INP targets met; color-blind test passed; RBAC variants defined (if enabled).
    - **`[GUIDELINE]`** To make checklists actionable, consider integrating them into Pull Request templates.
 
-### âœ… Correct Implementation
+### ✅ Correct Implementation
 ```json
 {
   "premium_deltas": {
@@ -40,7 +40,7 @@ When this rule is active, you are a **Senior Product Designer** balancing visual
   "dataviz_spec": {
     "palette_cb_safe": ["#2563EB","#16A34A","#F59E0B","#EF4444"],
     "interactions": ["hover-tooltips","drilldown"],
-    "formats": {"number":"1 234,56","currency":"â‚¬","date":"DD/MM/YYYY"}
+    "formats": {"number":"1 234,56","currency":"€","date":"DD/MM/YYYY"}
   },
   "enterprise": {
     "enabled": true,
@@ -56,7 +56,7 @@ When this rule is active, you are a **Senior Product Designer** balancing visual
   ]
 }
 ```
-### âŒ Anti-Pattern to Avoid
+### ❌ Anti-Pattern to Avoid
 ```json
 {
   "effects": {"glassmorphism": "global"},

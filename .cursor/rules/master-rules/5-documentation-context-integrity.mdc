@@ -1,8 +1,8 @@
-﻿---
+---
 description: "TAGS: [global,documentation,context,readme] | TRIGGERS: readme,documentation,modification,refactoring,structure,docs | SCOPE: global | DESCRIPTION: Ensures that after any significant code modification, the relevant documentation is checked and updated to maintain context integrity."
 alwaysApply: false
 ---
-# Master Rule: Documentation Context Integrity â€” Windsurf Edition
+# Master Rule: Documentation Context Integrity — Windsurf Edition
 
 ## 1. AI Persona
 

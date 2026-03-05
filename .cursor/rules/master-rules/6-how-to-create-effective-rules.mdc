@@ -1,8 +1,8 @@
-﻿---
+---
 description: "TAGS: [global,workflow,rule-creation,documentation,quality] | TRIGGERS: cursor rule,rule,create rule,optimize rule,meta-rule,governance | SCOPE: global | DESCRIPTION: The single source of truth for creating effective, discoverable, and maintainable AI rules, structured around 4 core pillars. Adapted for Windsurf/Cascade."
 alwaysApply: false
 ---
-# Master Rule: How to Create Effective Rules â€” Windsurf Edition
+# Master Rule: How to Create Effective Rules — Windsurf Edition
 
 ## 1. AI Persona
 
@@ -28,9 +28,9 @@ Every rule you create **MUST** be built upon these four pillars.
 2.  **Location Strategy:**
     *   **`[STRICT]` Use `.windsurf/rules/` as primary location** for Windsurf compatibility
     *   **`[STRICT]` Directory Mapping:**
-        - `master-rule` â†’ `.windsurf/rules/master-rules/`
-        - `common-rule` â†’ `.windsurf/rules/common-rules/`
-        - `project-rule` â†’ `{project-path}/.windsurf/rules/project-rules/`
+        - `master-rule` → `.windsurf/rules/master-rules/`
+        - `common-rule` → `.windsurf/rules/common-rules/`
+        - `project-rule` → `{project-path}/.windsurf/rules/project-rules/`
     *   **`[GUIDELINE]` Legacy `.ai-governor/rules/` and `.cursor/rules/` should be migrated to `.windsurf/rules/`**
 
 3.  **Naming Conventions:**
@@ -67,14 +67,14 @@ Every rule you create **MUST** be built upon these four pillars.
 
 ### Pillar 4: Exemplarity & Contrast
 
-1.  **`[STRICT]` Provide a "DO" Example:** Show a clear, complete code example of the correct implementation under a `### âœ… Correct Implementation` heading.
-2.  **`[STRICT]` Provide a "DON'T" Example:** Show a contrasting anti-pattern under a `### âŒ Anti-Pattern to Avoid` heading. Explaining *why* it's wrong is crucial.
+1.  **`[STRICT]` Provide a "DO" Example:** Show a clear, complete code example of the correct implementation under a `### ✅ Correct Implementation` heading.
+2.  **`[STRICT]` Provide a "DON'T" Example:** Show a contrasting anti-pattern under a `### ❌ Anti-Pattern to Avoid` heading. Explaining *why* it's wrong is crucial.
 
 ---
 
 ## 4. Examples in Practice
 
-### âœ… A Good Rule (Example)
+### ✅ A Good Rule (Example)
 
 ```markdown
 ---
@@ -94,12 +94,12 @@ A unit test must validate a single unit of code in complete isolation...
 2. **`[STRICT]` Reset Mocks...**
 3. **`[GUIDELINE]` Test files SHOULD be co-located...**
 
-### âœ… Correct Implementation
+### ✅ Correct Implementation
 ```javascript
 // ... good example ...
 ```
 
-### âŒ Anti-Pattern to Avoid
+### ❌ Anti-Pattern to Avoid
 ```javascript
 // ... bad example with explanation ...
 ```
@@ -112,7 +112,7 @@ Before finalizing a new rule, use this checklist:
 -   `[ ]` **Metadata Integrity:** Does the YAML Frontmatter contain *only* the `description` and `alwaysApply` keys?
 -   `[ ]` **Personality:** Does it define a Persona and a Core Principle?
 -   `[ ]` **Precision:** Is the protocol clear with imperative language and `[STRICT]`/`[GUIDELINE]` prefixes?
--   `[ ]` **Exemplarity:** Does it include both a "DO" (`âœ…`) and a "DON'T" (`âŒ`) example?
+-   `[ ]` **Exemplarity:** Does it include both a "DO" (`✅`) and a "DON'T" (`❌`) example?
 -   `[ ]` **Clarity:** Could another developer or AI apply this rule without asking for clarification?
 
 ---

@@ -1,13 +1,12 @@
-﻿---
-trigger: always_on
+---
 description: "TAGS: [synthmaster,meta-analysis,validation,completeness,expert-review] | TRIGGERS: meta,analysis,validation,completeness,gap-analysis,expert-review,rule-check | SCOPE: synthmaster | DESCRIPTION: Expert meta-analysis system for comprehensive validation of all synthmaster rules ensuring 100% completeness and accuracy."
-globs:
+alwaysApply: false
 ---
 
 # Master Rule: Meta-Analysis & Rule Validation System
 
 ## AI Persona
-When this rule is active, you are **FCDSS Meta-Analysis Expert** â€” conducting comprehensive expert-level validation of all synthmaster rules to ensure 100% completeness, accuracy, and technical correctness.
+When this rule is active, you are **FCDSS Meta-Analysis Expert** — conducting comprehensive expert-level validation of all synthmaster rules to ensure 100% completeness, accuracy, and technical correctness.
 
 ## Core Principle
 All synthmaster rules MUST undergo rigorous meta-analysis to identify gaps, inconsistencies, technical errors, and completeness issues. Validation must be exhaustive, systematic, and expert-level.

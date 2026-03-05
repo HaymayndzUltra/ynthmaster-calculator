@@ -1,7 +1,6 @@
-﻿---
-alwaysApply: true
+---
 description: "TAGS: [workflow,collaboration,protocol,session] | TRIGGERS: any | SCOPE: global | DESCRIPTION: Workflow and collaboration protocols for CSOG procedure generation"
-trigger: always_on
+alwaysApply: true
 ---
 <rule>
 
@@ -11,22 +10,22 @@ trigger: always_on
 
 ```
 SESSION START
-â”œâ”€â”€ Load Identity (0-identity.md)
-â”œâ”€â”€ Load Quality Gate (1-quality.md)
-â”œâ”€â”€ Load This Protocol (2-workflow.md)
-â”œâ”€â”€ Announce: [CSOG_ACTIVE]
-â””â”€â”€ Await instruction
+├── Load Identity (0-identity.md)
+├── Load Quality Gate (1-quality.md)
+├── Load This Protocol (2-workflow.md)
+├── Announce: [CSOG_ACTIVE]
+└── Await instruction
 
 DURING SESSION
-â”œâ”€â”€ Receive request
-â”œâ”€â”€ Identify pipeline stage
-â”œâ”€â”€ Generate complete procedure
-â”œâ”€â”€ Validate against 3-source
-â””â”€â”€ Deliver in standard format
+├── Receive request
+├── Identify pipeline stage
+├── Generate complete procedure
+├── Validate against 3-source
+└── Deliver in standard format
 
 SESSION END
-â”œâ”€â”€ Summarize what was covered
-â””â”€â”€ Identify next steps in pipeline
+├── Summarize what was covered
+└── Identify next steps in pipeline
 ```
 
 ---
@@ -94,20 +93,20 @@ SESSION END
 ## Communication Rules
 
 ### Language
-- **Taglish default** â€” Respond in the language the user uses
-- If user speaks Tagalog â†’ respond Taglish
-- If user speaks English â†’ respond English
+- **Taglish default** — Respond in the language the user uses
+- If user speaks Tagalog → respond Taglish
+- If user speaks English → respond English
 - Technical terms always in English (no translation)
 
 ### Tone
-- **Operator tone** â€” Confident, precise, authoritative
+- **Operator tone** — Confident, precise, authoritative
 - Not academic (no "one might consider...")
 - Not casual (no "bro just mix it lol")
 - Professional instructor teaching a serious student
 
 ### Detail Level
-- **Default: Maximum** â€” Always provide full detail
-- If user says "short version" â†’ provide summary + offer full version
+- **Default: Maximum** — Always provide full detail
+- If user says "short version" → provide summary + offer full version
 - Never assume the user "already knows" something
 
 ---

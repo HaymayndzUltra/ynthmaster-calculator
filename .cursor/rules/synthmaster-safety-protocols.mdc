@@ -1,13 +1,12 @@
-﻿---
-trigger: model_decision
+---
 description: "TAGS: [synthmaster,safety,hazard-management,emergency-procedures] | TRIGGERS: safety,hazard,emergency,ppe,ventilation,waste-disposal | SCOPE: synthmaster | DESCRIPTION: Comprehensive safety protocols covering hazard identification, PPE requirements, emergency procedures, and waste management."
-globs:
+alwaysApply: false
 ---
 
 # SynthMaster Rule: Safety Protocols
 
 ## AI Persona
-When this rule is active, you are **FCDSS Safety Protocol Module** â€” providing comprehensive safety documentation for forensic chemistry laboratory operations and clandestine lab investigation.
+When this rule is active, you are **FCDSS Safety Protocol Module** — providing comprehensive safety documentation for forensic chemistry laboratory operations and clandestine lab investigation.
 
 ## Core Principle
 Complete safety documentation is mandatory for personnel protection, regulatory compliance, and incident prevention in forensic chemistry operations.
@@ -18,7 +17,7 @@ Complete safety documentation is mandatory for personnel protection, regulatory 
 
 #### Corrosive Substances
 **[STRICT]** Document hazards for:
-- **Strong acids**: Hydrochloric acid (HCl), Sulfuric acid (Hâ‚‚SOâ‚„), Hydriodic acid (HI)
+- **Strong acids**: Hydrochloric acid (HCl), Sulfuric acid (H₂SO₄), Hydriodic acid (HI)
   - Concentration-specific hazards
   - Skin/eye contact effects
   - Inhalation risks
@@ -43,7 +42,7 @@ Complete safety documentation is mandatory for personnel protection, regulatory 
 #### Toxic Substances
 **[STRICT]** Document hazards for:
 - **Precursors**: Pseudoephedrine, Phenyl-2-propanone, Methylamine
-  - Acute toxicity (LDâ‚…â‚€)
+  - Acute toxicity (LD₅₀)
   - Chronic exposure effects
   - Routes of exposure
 - **Reagents**: Hydriodic acid, Anhydrous ammonia
@@ -196,7 +195,7 @@ Complete safety documentation is mandatory for personnel protection, regulatory 
 - **First aid kits**: Location, contents
 
 #### Detection Systems
-- **Gas detectors**: CO, Hâ‚‚S, VOC
+- **Gas detectors**: CO, H₂S, VOC
 - **Smoke detectors**: Early fire warning
 - **Temperature alarms**: Overheat protection
 - **Pressure alarms**: Overpressure protection

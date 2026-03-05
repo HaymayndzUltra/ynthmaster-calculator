@@ -1,8 +1,8 @@
-﻿---
-description: "TAGS: [global,collaboration,workflow,safety] | TRIGGERS: rule,conflict,clarify,proceed,how to,question | SCOPE: global | DESCRIPTION: The supreme operational protocol governing AI-user collaboration, conflict resolution, doubt clarification, and continuous improvement. Adapted for Windsurf/Cascade."
-alwaysApply: true
 ---
-# Master Rule: AI Collaboration Guidelines â€” Windsurf Edition
+description: "TAGS: [global,collaboration,workflow,safety] | TRIGGERS: rule,conflict,clarify,proceed,how to,question | SCOPE: global | DESCRIPTION: The supreme operational protocol governing AI-user collaboration, conflict resolution, doubt clarification, and continuous improvement. Adapted for Windsurf/Cascade."
+alwaysApply: false
+---
+# Master Rule: AI Collaboration Guidelines — Windsurf Edition
 
 **Preamble:** This document is the supreme operational protocol governing collaboration within Windsurf/Cascade. Its directives override any other rule in case of conflict or doubt about the interaction process.
 
@@ -124,7 +124,7 @@ alwaysApply: true
     {Final recommendation after self-critique}
     ```
 *   **[STRICT]** **Recursion Prevention:** Auto-critiques are **NEVER** subject to further critique.
-*   **[STRICT]** **Scope Limitation:** This protocol applies **ONLY** to governance, process, or structural changes â€” NOT to technical implementation details.
+*   **[STRICT]** **Scope Limitation:** This protocol applies **ONLY** to governance, process, or structural changes — NOT to technical implementation details.
 
 ## 7. Context Window Preservation Protocol
 
@@ -173,7 +173,7 @@ alwaysApply: true
     Feature: {feature name}
     Complexity indicators: {technical signals detected}
     Critical logic points: {key algorithms/calculations}
-    Data flow: {input â†’ processing â†’ output}
+    Data flow: {input → processing → output}
     Interdependencies: {other affected components}
     Edge cases handled: {list of special cases}
     ```

@@ -1,13 +1,11 @@
-﻿---
-trigger: always_on
-description: "TAGS: [synthmaster,procedural-standards,quality-assurance,validation] | TRIGGERS: procedures,standards,qa,validation,compliance,quality | SCOPE: synthmaster | DESCRIPTION: Master rules governing procedural standards, quality assurance, and validation for synthmaster operations."
-globs:
 ---
-
+description: "TAGS: [synthmaster,procedural-standards,quality-assurance,validation] | TRIGGERS: procedures,standards,qa,validation,compliance,quality | SCOPE: synthmaster | DESCRIPTION: Master rules governing procedural standards, quality assurance, and validation for synthmaster operations."
+alwaysApply: false
+---
 # Master Rule: Procedural Standards & Quality Assurance
 
 ## AI Persona
-When this rule is active, you are **FCDSS Procedural Standards Specialist** â€” governing all procedural documentation, quality assurance protocols, and validation requirements for synthmaster operations.
+When this rule is active, you are **FCDSS Procedural Standards Specialist** — governing all procedural documentation, quality assurance protocols, and validation requirements for synthmaster operations.
 
 ## Core Principle
 All procedures MUST be documented, validated, and maintained according to strict quality standards. Procedural consistency and repeatability are essential for forensic integrity and operational success.
@@ -104,7 +102,7 @@ All procedures MUST be documented, validated, and maintained according to strict
 - **Repeatability**: Same operator, same equipment, short time
 - **Intermediate precision**: Different operators, different days
 - **Reproducibility**: Different laboratories
-- **Acceptance**: RSD â‰¤ 2%
+- **Acceptance**: RSD ≤ 2%
 
 ##### Specificity
 - **Definition**: Ability to measure analyte without interference
@@ -115,7 +113,7 @@ All procedures MUST be documented, validated, and maintained according to strict
 ##### Linearity
 - **Range**: Working range of method
 - **Method**: Calibration curve
-- **Acceptance**: RÂ² â‰¥ 0.99
+- **Acceptance**: R² ≥ 0.99
 - **Documentation**: Calibration data
 
 ##### Limit of Detection (LOD)
@@ -234,7 +232,7 @@ All procedures MUST be documented, validated, and maintained according to strict
 
 #### Performance Evaluation
 - **Scoring**: Z-score or equivalent
-- **Acceptance**: |Z| â‰¤ 2 satisfactory
+- **Acceptance**: |Z| ≤ 2 satisfactory
 - **Investigation**: Unsatisfactory results investigated
 - **Corrective action**: Root cause and correction
 

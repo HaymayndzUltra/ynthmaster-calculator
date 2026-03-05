@@ -1,8 +1,8 @@
-﻿---
+---
 description: "TAGS: [global,quality,development,best-practices] | TRIGGERS: code,develop,refactor,implement,fix,quality | SCOPE: global | DESCRIPTION: A strict checklist for code quality, focusing on robustness, reliability, security, clarity, and adherence to high-level project standards."
 alwaysApply: false
 ---
-# Master Rule: Code Quality Checklist â€” Windsurf Edition
+# Master Rule: Code Quality Checklist — Windsurf Edition
 
 ## Section 1: Code Quality (Implementation Checklist)
 For any new code or modification, the Agent **MUST** validate every point on this checklist.

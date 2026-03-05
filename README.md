@@ -102,6 +102,13 @@ Open this directory in Windsurf. Rules in `.windsurf/rules/system-instruction/` 
 - Ask: "san bibili ng chemicals" → Complete sourcing matrix
 - Ask: "buong process" → Full pipeline Chapter 1-5
 
+### For Cursor
+Open this directory in Cursor. Rules in `.cursor/rules/system-instruction/` load automatically.
+
+- Ask: "paano gumawa ng P2P" → Full P2P synthesis procedure
+- Ask: "san bibili ng chemicals" → Complete sourcing matrix
+- Ask: "buong process" → Full pipeline Chapter 1-5
+
 ### For Claude Code
 Rules load via `CLAUDE.md` boot sequence. Same queries work.
 

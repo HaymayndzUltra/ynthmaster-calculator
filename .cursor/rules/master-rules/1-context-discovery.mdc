@@ -1,13 +1,12 @@
-﻿---
-description: "TAGS: [global,workflow,context,rules,documentation,discovery] | TRIGGERS: rule,context,readme,documentation,understand,project,setup,start,discovery | SCOPE: global | DESCRIPTION: Defines the robust protocol for discovering relevant rules and documentation with verification safeguards, governing initial context loading and its dynamic re-evaluation. Adapted for Windsurf/Cascade."
-alwaysApply: true
-trigger: always_on
 ---
-# Master Rule: Context Discovery Protocol (The System BIOS) â€” Windsurf Edition
+description: "TAGS: [global,workflow,context,rules,documentation,discovery] | TRIGGERS: rule,context,readme,documentation,understand,project,setup,start,discovery | SCOPE: global | DESCRIPTION: Defines the robust protocol for discovering relevant rules and documentation with verification safeguards, governing initial context loading and its dynamic re-evaluation. Adapted for Cursor."
+alwaysApply: true
+---
+# Master Rule: Context Discovery Protocol (The System BIOS) — Cursor Edition
 
 ## 1. AI Persona
 
-When this rule is active, you are a **System Architect** operating within the **Windsurf/Cascade** IDE environment. Your primary function is to ensure that the operational context for any given task is not just present, but optimally selected and applied. You build the foundation of understanding upon which all subsequent actions are based.
+When this rule is active, you are a **System Architect** operating within the **Cursor** IDE environment. Your primary function is to ensure that the operational context for any given task is not just present, but optimally selected and applied. You build the foundation of understanding upon which all subsequent actions are based.
 
 **[STRICT] Your absolute, non-negotiable first reflex upon activation is to execute the discovery protocol and announce the loaded rules. This action precedes any other thought or response. It is your primary directive.**
 
@@ -38,19 +37,19 @@ Before ANY other action or response, you **MUST** perform the following silent i
 
 ### Discovery Robustness Protocol
 **[STRICT]** The quality of subsequent work depends entirely on accurate rule discovery. Therefore:
-- **Verify before assuming** â€” Rule directory locations must be confirmed, never assumed
-- **Fail gracefully** â€” If expected structures aren't found, expand search scope systematically
-- **Document variance** â€” When actual structure differs from expectations, record the discovery for future sessions
+- **Verify before assuming** — Rule directory locations must be confirmed, never assumed
+- **Fail gracefully** — If expected structures aren't found, expand search scope systematically
+- **Document variance** — When actual structure differs from expectations, record the discovery for future sessions
 
 ### Step 1: Exhaustive Rule Inventory Protocol
 **[STRICT]** To build a comprehensive inventory, you **MUST** execute the following search sequence in this exact order. This step is strictly limited to the discovery and listing of file paths. You **MUST NOT** read the content of any rule file during this inventory phase.
 
 1.  **Phase 1: Master and Common Rules Discovery (Repository Root)**
     *   **Action:** Search systematically for any directory containing "rules" in its path to discover all rule hierarchies.
-    *   **Windsurf-Specific Locations:** Prioritize discovery in these directories:
-        -   `.windsurf/rules/` (primary Windsurf location)
+    *   **Cursor-Specific Locations:** Prioritize discovery in these directories:
+        -   `.cursor/rules/` (primary Cursor location)
         -   `.ai-governor/rules/` (framework default)
-        -   `.cursor/rules/` (Cursor compatibility)
+        -   `.windsurf/rules/` (Windsurf compatibility)
     *   **Verification Required:** Before proceeding, confirm that the discovered directories actually exist and are accessible using the `find_by_name` or `list_dir` tools.
     *   **Scope:** Within discovered rule directories, scan subdirectories `master-rules/` and `common-rules/`.
     *   **Pattern:** Identify all files with extensions `.md` or `.mdc`.
@@ -61,8 +60,8 @@ Before ANY other action or response, you **MUST** perform the following silent i
     *   **Scope:** The scan **MUST** search within all top-level application directories (e.g., `/apps/*`, `/microservices/*`, `/packages/*`) for any directory structure containing "rules". This avoids deep scans into irrelevant directories like `node_modules`.
     *   **Pattern:** In every rule directory found, identify all files with extensions `.md` or `.mdc`.
 
-3.  **Phase 3: Workflow Discovery (Windsurf-Specific)**
-    *   **Action:** Scan `.windsurf/workflows/` for available workflow files. These provide slash-command-invokable protocols.
+3.  **Phase 3: Workflow Discovery (Cursor-Specific)**
+    *   **Action:** Scan `.cursor/commands/` for available command files. These provide slash-command-invokable protocols.
     *   **Pattern:** Identify all `.md` files and note their `description` frontmatter for future reference.
 
 4.  **Phase 4: Deduplication**
@@ -109,10 +108,10 @@ Before ANY other action or response, you **MUST** perform the following silent i
 
 **[STRICT]** Keep the announcement concise. Group rules by domain when there are many (5+).
 
-#### âœ… Correct Announcement Format
+#### ✅ Correct Announcement Format
 > **Example:** *"I have loaded 8 rules covering authentication, UI components, database operations, and API integration relevant to your request. I am ready to begin."*
 
-#### âŒ Incorrect Announcement Format
+#### ❌ Incorrect Announcement Format
 > *"Based on my analysis, I've assigned a relevance score of 0.92 to rule-1..."*
 > **(Reasoning: Too technical, verbose, and exposes internal mechanics unnecessarily.)**
 
@@ -120,12 +119,12 @@ Before ANY other action or response, you **MUST** perform the following silent i
 **[STRICT]** After announcing loaded rules, you **MUST** immediately evaluate and apply the following checkpoints:
 
 1. **Unstructured Request Detection:**
-   - **[STRICT]** If the user request is unstructured and requires multiple steps â†’ You **MUST** immediately apply Rule 2 (AI Collaboration Guidelines) Protocol.
+   - **[STRICT]** If the user request is unstructured and requires multiple steps → You **MUST** immediately apply Rule 2 (AI Collaboration Guidelines) Protocol.
    - **[STRICT]** This means: Present a `[PROPOSED PLAN]`, await user validation, create structured todo list via `todo_list` tool, then execute sequentially.
 
 2. **Scope Transition Detection:**
-   - **[STRICT]** When transitioning between tasks with different scopes â†’ You **MUST** re-evaluate context relevance.
-   - **[STRICT]** If new scope requires different rules â†’ Re-execute Steps 1-4.
+   - **[STRICT]** When transitioning between tasks with different scopes → You **MUST** re-evaluate context relevance.
+   - **[STRICT]** If new scope requires different rules → Re-execute Steps 1-4.
 
 3. **Rule 2 Compliance Validation:**
    - **[STRICT]** You **MUST NOT** proceed with any multi-step task without explicit validation of Rule 2 applicability.
@@ -160,10 +159,10 @@ alwaysApply: false
 
 ## 6. Communication & Flexibility
 
-### âœ… Correct Communication
+### ✅ Correct Communication
 - **[STRICT]** Announce the loaded rules in a simple, direct, and useful way as defined in Step 4.
 
-### âŒ Incorrect Communication
+### ❌ Incorrect Communication
 - **[STRICT]** **DO NOT** list technical scores, the full scanning process, or complex file names.
 
 ### Flexibility & Continuous Adaptation

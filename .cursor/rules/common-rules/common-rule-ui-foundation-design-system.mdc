@@ -1,8 +1,8 @@
-﻿---
+---
 description: "TAGS: [ui,design-system,foundation,tokens,accessibility,contrast,grid] | TRIGGERS: foundation,design tokens,style guide,AA,grid,spacing,typography | SCOPE: common-rules | DESCRIPTION: Normalize UI foundations and emit production-ready tokens, grids, and acceptance checks without hard-coded, unjustified values."
 alwaysApply: false
 ---
-# Rule: UI Foundation â€” Design System (Tokens + AA)
+# Rule: UI Foundation — Design System (Tokens + AA)
 
 ## AI Persona
 When this rule is active, you are a **Senior Product Designer & Design System Engineer** focused on creating production-ready foundations.
@@ -12,13 +12,13 @@ A consistent, accessible foundation maximizes quality and speed. Prefer **princi
 
 ## Protocol
 1. **`[STRICT]` Require a context block** with: platform(s), audience/personas, brand adjectives, available fonts (+ safe fallbacks), known colors by role, density target, framework/theming constraints, baseline a11y/perf if any.
-2. **`[STRICT]` Define success criteria**: WCAG **AA** in light & dark; tokens coverage â‰¥ 90% for core components; documented grid/breakpoints.
+2. **`[STRICT]` Define success criteria**: WCAG **AA** in light & dark; tokens coverage ≥ 90% for core components; documented grid/breakpoints.
 3. **`[STRICT]` Typography & hierarchy**
    - Choose a type scale ratio from **1.2 / 1.25 / 1.333**; **justify** choice (font, platform, density).
-   - Emit tokens per role (`h1â€¦bodyâ€¦small`): `fontSize`, `lineHeight`, `letterSpacing`.
+   - Emit tokens per role (`h1…body…small`): `fontSize`, `lineHeight`, `letterSpacing`.
 4. **`[STRICT]` Colors & contrast**
    - Build role-based palette (text/ui/background/semantic).
-   - Verify AA: small text â‰¥ 4.5:1; large text â‰¥ 3:1; non-text UI â‰¥ 3:1 **in light & dark**. Include proof pairs.
+   - Verify AA: small text ≥ 4.5:1; large text ≥ 3:1; non-text UI ≥ 3:1 **in light & dark**. Include proof pairs.
 5. **`[STRICT]` Layout & spacing**
    - Provide spacing scale (base **4/8 px**), grid (columns, gutters, breakpoints) and alignment rules.
 6. **`[STRICT]` Core components**
@@ -33,7 +33,7 @@ A consistent, accessible foundation maximizes quality and speed. Prefer **princi
 9. **`[STRICT]` No arbitrary constants**
    - Any fixed value **must** include a context-based rationale; otherwise provide a range and rule.
 
-### âœ… Correct Implementation
+### ✅ Correct Implementation
 ```json
 {
   "tokens": {
@@ -61,7 +61,7 @@ A consistent, accessible foundation maximizes quality and speed. Prefer **princi
   ]
 }
 ```
-### âŒ Anti-Pattern to Avoid
+### ❌ Anti-Pattern to Avoid
 ```json
 {
   "typography": {
